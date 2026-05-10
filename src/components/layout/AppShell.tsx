@@ -1,7 +1,7 @@
 import BottomNav from "./BottomNav";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function AppShell({
