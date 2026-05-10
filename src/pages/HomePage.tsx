@@ -654,7 +654,172 @@ export default function HomePage() {
     />
   </div>
 </motion.div>
+{/* CONTINUE TEST */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: 20,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    delay: 0.15,
+  }}
+  className="relative z-10"
+>
+  {/* HEADER */}
+  <div
+    className="
+    flex
+    items-center
+    justify-between
+    mb-4
+  "
+  >
+    <h2
+      className="
+      text-2xl
+      font-bold
+    "
+    >
+      Davom etayotgan test
+    </h2>
 
+    <button
+      className="
+      text-gray-400
+      text-sm
+    "
+    >
+      Barchasi
+    </button>
+  </div>
+
+  {/* CARD */}
+  <div
+    className="
+    relative
+    overflow-hidden
+    rounded-[30px]
+    border
+    border-white/10
+    bg-gradient-to-br
+    from-[#132238]
+    via-[#0c1728]
+    to-[#09111d]
+    p-4
+    shadow-2xl
+    shadow-blue-500/10
+  "
+  >
+    {/* GLOW */}
+    <div
+      className="
+      absolute
+      -right-10
+      top-0
+      w-44
+      h-44
+      rounded-full
+      bg-yellow-500/10
+      blur-[90px]
+    "
+    />
+
+    <div
+      className="
+      relative
+      z-10
+      flex
+      gap-4
+    "
+    >
+      {/* IMAGE */}
+      <div
+        className="
+        min-w-[110px]
+        h-[110px]
+        rounded-2xl
+        bg-gradient-to-br
+        from-yellow-700
+        to-yellow-900
+        flex
+        items-center
+        justify-center
+        text-5xl
+        shadow-lg
+      "
+      >
+        🐎
+      </div>
+
+      {/* CONTENT */}
+      <div className="flex-1">
+        <h3
+          className="
+          text-xl
+          leading-snug
+          font-bold
+        "
+        >
+          Amir Temur va
+          Temuriylar davlati
+        </h3>
+
+        <p
+          className="
+          mt-2
+          text-gray-400
+        "
+        >
+          7 / 30 savol
+        </p>
+
+        {/* PROGRESS */}
+        <div
+          className="
+          mt-4
+          w-full
+          h-2.5
+          rounded-full
+          bg-white/10
+          overflow-hidden
+        "
+        >
+          <div
+            className="
+            h-full
+            w-[25%]
+            rounded-full
+            bg-gradient-to-r
+            from-yellow-400
+            to-yellow-600
+          "
+          />
+        </div>
+
+        {/* BUTTON */}
+        <button
+          className="
+          mt-5
+          px-5
+          py-3
+          rounded-2xl
+          border
+          border-white/10
+          bg-white/5
+          backdrop-blur-xl
+          font-semibold
+        "
+        >
+          Davom etish →
+        </button>
+      </div>
+    </div>
+  </div>
+</motion.div>
       {/* STATS */}
       <div
         className="
