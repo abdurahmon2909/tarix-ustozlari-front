@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
-    <div className="relative overflow-hidden pt-6 space-y-6 pb-6">
+    <div className="relative overflow-hidden pt-2 space-y-6 pb-6">
       {/* GLOWS */}
       <div
         className="
@@ -137,7 +137,7 @@ export default function HomePage() {
             relative
             w-14
             h-14
-            rounded-xl
+            rounded-2xl
             bg-gradient-to-br
             from-yellow-400
             to-yellow-600
