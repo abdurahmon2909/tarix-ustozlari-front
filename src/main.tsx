@@ -23,6 +23,8 @@ import {
   registerSW,
 } from "./features/pwa/register-sw";
 
+import AuthProvider from "./providers/AuthProvider";
+
 const queryClient =
   new QueryClient();
 
@@ -44,7 +46,9 @@ ReactDOM.createRoot(
       client={queryClient}
     >
       <BrowserRouter>
-        <Root />
+        <AuthProvider>
+          <Root />
+        </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

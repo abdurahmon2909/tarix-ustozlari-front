@@ -1,52 +1,136 @@
 import { create } from "zustand";
 
+import { persist } from "zustand/middleware";
+
 interface User {
   id: number;
 
-  full_name?: string;
+  telegram_id: number;
 
   username?: string;
+
+  full_name?: string;
+
+  subject?: string;
+
+  region?: string;
+
+  school?: string;
+
+  xp: number;
+
+  sharaf: number;
+
+  level: number;
+
+  streak: number;
+
+  onboarding_completed: boolean;
+
+  role: string;
 }
 
 interface AuthState {
   user: User | null;
 
-  token: string | null;
+  accessToken: string | null;
+
+  refreshToken: string | null;
+
+  isAuthenticated: boolean;
+
+  isLoading: boolean;
+
+  setLoading: (
+    loading: boolean
+  ) => void;
 
   setAuth: (
     user: User,
-    token: string
+    accessToken: string,
+    refreshToken: string
+  ) => void;
+
+  updateUser: (
+    user: User
   ) => void;
 
   logout: () => void;
 }
 
 export const useAuthStore =
-  create<AuthState>((set) => ({
-    user: null,
-
-    token: null,
-
-    setAuth: (user, token) => {
-      localStorage.setItem(
-        "access_token",
-        token
-      );
-
-      set({
-        user,
-        token,
-      });
-    },
-
-    logout: () => {
-      localStorage.removeItem(
-        "access_token"
-      );
-
-      set({
+  create<AuthState>()(
+    persist(
+      (set) => ({
         user: null,
-        token: null,
-      });
-    },
-  }));
+
+        accessToken: null,
+
+        refreshToken: null,
+
+        isAuthenticated: false,
+
+        isLoading: true,
+
+        setLoading: (
+          loading
+        ) => {
+          set({
+            isLoading: loading,
+          });
+        },
+
+        setAuth: (
+          user,
+          accessToken,
+          refreshToken
+        ) => {
+          localStorage.setItem(
+            "access_token",
+            accessToken
+          );
+
+          localStorage.setItem(
+            "refresh_token",
+            refreshToken
+          );
+
+          set({
+            user,
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            isLoading: false,
+          });
+        },
+
+        updateUser: (user) => {
+          set({
+            user,
+          });
+        },
+
+        logout: () => {
+          localStorage.removeItem(
+            "access_token"
+          );
+
+          localStorage.removeItem(
+            "refresh_token"
+          );
+
+          set({
+            user: null,
+            accessToken: null,
+            refreshToken: null,
+            isAuthenticated: false,
+            isLoading: false,
+          });
+        },
+      }),
+
+      {
+        name: "auth-storage",
+      }
+    )
+  );
