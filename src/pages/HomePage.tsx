@@ -1413,7 +1413,176 @@ export default function HomePage() {
           — Mirzo Ulug‘bek
         </p>
       </div>
+{/* TOP USTOZLAR */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: 20,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    delay: 0.25,
+  }}
+  className="relative z-10"
+>
+  {/* HEADER */}
+  <div
+    className="
+    flex
+    items-center
+    justify-between
+    mb-4
+  "
+  >
+    <h2
+      className="
+      text-2xl
+      font-bold
+    "
+    >
+      Top ustozlar
+    </h2>
 
+    <button
+      className="
+      text-yellow-400
+      text-sm
+    "
+    >
+      Reyting
+    </button>
+  </div>
+
+  {/* LIST */}
+  <div className="space-y-4">
+    {/* USER */}
+    {[
+      {
+        name: "Sardor",
+        xp: "12 450 XP",
+        place: "#1",
+        color:
+          "from-yellow-500/20 to-yellow-700/10",
+        icon: "🥇",
+      },
+      {
+        name: "Madina",
+        xp: "10 980 XP",
+        place: "#2",
+        color:
+          "from-gray-400/20 to-gray-600/10",
+        icon: "🥈",
+      },
+      {
+        name: "Javohir",
+        xp: "9 740 XP",
+        place: "#3",
+        color:
+          "from-orange-500/20 to-orange-700/10",
+        icon: "🥉",
+      },
+    ].map((user, index) => (
+      <div
+        key={index}
+        className={`
+          rounded-[28px]
+          p-4
+          border
+          border-white/10
+          bg-gradient-to-br
+          ${user.color}
+          backdrop-blur-xl
+        `}
+      >
+        <div
+          className="
+          flex
+          items-center
+          justify-between
+        "
+        >
+          {/* LEFT */}
+          <div
+            className="
+            flex
+            items-center
+            gap-4
+          "
+          >
+            {/* AVATAR */}
+            <div
+              className="
+              w-14
+              h-14
+              rounded-2xl
+              bg-white/10
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+              text-2xl
+            "
+            >
+              {user.icon}
+            </div>
+
+            {/* INFO */}
+            <div>
+              <h3
+                className="
+                text-lg
+                font-bold
+              "
+              >
+                {user.name}
+              </h3>
+
+              <p
+                className="
+                text-sm
+                text-gray-400
+                mt-1
+              "
+              >
+                {user.xp}
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div
+            className="
+            text-right
+          "
+          >
+            <p
+              className="
+              text-2xl
+              font-black
+              text-yellow-400
+            "
+            >
+              {user.place}
+            </p>
+
+            <p
+              className="
+              text-xs
+              text-gray-500
+            "
+            >
+              Global
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</motion.div>
       {/* AI CARD */}
       <div
         className="
