@@ -2,6 +2,8 @@ import {
   Clock3,
   ChevronLeft,
   Flag,
+  Check,
+  X,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -12,6 +14,9 @@ const answers = [
   "Rossiya Respublikasi",
   "Sotsialistik davlat",
 ];
+
+const selectedAnswer = 2;
+const correctAnswer = 2;
 
 export default function TestSessionPage() {
   return (
@@ -48,7 +53,7 @@ export default function TestSessionPage() {
         justify-between
       "
       >
-        {/* LEFT */}
+        {/* BACK */}
         <button
           className="
           w-12
@@ -210,37 +215,81 @@ export default function TestSessionPage() {
       "
       >
         {answers.map(
-          (answer, index) => {
-            const isCorrect =
-              index === 2;
+          (answer, index) => (
+            <motion.button
+              key={index}
+              whileTap={{
+                scale: 0.98,
+              }}
+              whileHover={{
+                scale: 1.01,
+              }}
+              className={`
+                relative
+                overflow-hidden
+                w-full
+                rounded-[28px]
+                border
+                p-5
+                text-left
+                transition-all
+                duration-300
 
-            return (
-              <motion.button
-                key={index}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                className={`
-                  w-full
-                  rounded-[28px]
-                  border
-                  p-5
-                  text-left
-                  transition-all
-
-                  ${
-                    isCorrect
-                      ? `
-                    border-green-500/30
+                ${
+                  index === correctAnswer
+                    ? `
+                    border-green-500/40
                     bg-green-500/10
+                    shadow-lg
+                    shadow-green-500/10
                   `
-                      : `
+                    : index === selectedAnswer
+                    ? `
+                    border-red-500/40
+                    bg-red-500/10
+                    shadow-lg
+                    shadow-red-500/10
+                  `
+                    : `
                     border-white/10
                     bg-white/[0.03]
+                    hover:bg-white/[0.05]
                   `
+                }
+              `}
+            >
+              {/* GLOW */}
+              {(index ===
+                correctAnswer ||
+                index ===
+                  selectedAnswer) && (
+                <div
+                  className={`
+                  absolute
+                  inset-0
+                  opacity-30
+
+                  ${
+                    index ===
+                    correctAnswer
+                      ? "bg-green-500/10"
+                      : "bg-red-500/10"
                   }
                 `}
+                />
+              )}
+
+              <div
+                className="
+                relative
+                z-10
+                flex
+                items-center
+                justify-between
+                gap-4
+              "
               >
+                {/* LEFT */}
                 <div
                   className="
                   flex
@@ -251,8 +300,8 @@ export default function TestSessionPage() {
                   {/* RADIO */}
                   <div
                     className={`
-                    w-6
-                    h-6
+                    w-7
+                    h-7
                     rounded-full
                     border
                     flex
@@ -260,27 +309,45 @@ export default function TestSessionPage() {
                     justify-center
 
                     ${
-                      isCorrect
+                      index ===
+                      correctAnswer
                         ? `
-                      border-green-400
-                      bg-green-400
-                    `
+                        border-green-400
+                        bg-green-400
+                      `
+                        : index ===
+                          selectedAnswer
+                        ? `
+                        border-red-400
+                        bg-red-400
+                      `
                         : `
-                      border-white/20
-                    `
+                        border-white/20
+                      `
                     }
                   `}
                   >
-                    {isCorrect && (
-                      <div
+                    {index ===
+                      correctAnswer && (
+                      <Check
+                        size={14}
                         className="
-                        w-2
-                        h-2
-                        rounded-full
-                        bg-black
+                        text-black
                       "
                       />
                     )}
+
+                    {index ===
+                      selectedAnswer &&
+                      index !==
+                        correctAnswer && (
+                        <X
+                          size={14}
+                          className="
+                          text-black
+                        "
+                        />
+                      )}
                   </div>
 
                   {/* TEXT */}
@@ -288,19 +355,56 @@ export default function TestSessionPage() {
                     className="
                     text-lg
                     font-medium
+                    leading-relaxed
                   "
                   >
                     {String.fromCharCode(
                       65 + index
                     )}
-                    )
-                    {" "}
+                    ){" "}
                     {answer}
                   </span>
                 </div>
-              </motion.button>
-            );
-          }
+
+                {/* STATUS */}
+                {index ===
+                  correctAnswer && (
+                  <div
+                    className="
+                    px-3
+                    py-1.5
+                    rounded-full
+                    bg-green-500/20
+                    text-green-400
+                    text-xs
+                    font-semibold
+                  "
+                  >
+                    To‘g‘ri
+                  </div>
+                )}
+
+                {index ===
+                  selectedAnswer &&
+                  index !==
+                    correctAnswer && (
+                    <div
+                      className="
+                      px-3
+                      py-1.5
+                      rounded-full
+                      bg-red-500/20
+                      text-red-400
+                      text-xs
+                      font-semibold
+                    "
+                    >
+                      Noto‘g‘ri
+                    </div>
+                  )}
+              </div>
+            </motion.button>
+          )
         )}
       </div>
 
