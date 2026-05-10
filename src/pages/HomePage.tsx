@@ -137,7 +137,7 @@ export default function HomePage() {
             relative
             w-14
             h-14
-            rounded-2xl
+            rounded-xl
             bg-gradient-to-br
             from-yellow-400
             to-yellow-600
