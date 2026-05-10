@@ -7,51 +7,56 @@ import {
 
 import { motion } from "framer-motion";
 
+import { useState } from "react";
+
+import {
+  useNavigate,
+} from "react-router-dom";
+
+import { useAuthStore } from "../store/auth.store";
+
 export default function LoginPage() {
+  const navigate =
+    useNavigate();
+
+  const setAuth =
+    useAuthStore(
+      (state) => state.setAuth
+    );
+
+  const [loading, setLoading] =
+    useState(false);
+
   async function handleLogin() {
     try {
+      setLoading(true);
+
       const tg =
         (window as any).Telegram?.WebApp;
 
       tg?.ready();
 
-      console.log("TG:", tg);
+      let initData =
+        tg?.initData;
 
-      console.log(
-        "INIT DATA:",
-        tg?.initData
-      );
-
-      console.log(
-        "INIT UNSAFE:",
-        tg?.initDataUnsafe
-      );
-
-      let user =
-        tg?.initDataUnsafe?.user;
-
-      // DESKTOP FALLBACK
-      if (!user) {
-        user = {
-          id: 999999,
-          username: "demo_user",
-          first_name: "Demo",
-        };
+      // DESKTOP TEST MODE
+      if (!initData) {
+        initData =
+          "id=999999&first_name=Demo&username=demo_user";
       }
 
       const response = await fetch(
         "https://web-production-7002f.up.railway.app/api/v1/auth/telegram",
         {
           method: "POST",
+
           headers: {
             "Content-Type":
               "application/json",
           },
+
           body: JSON.stringify({
-            telegram_id: user.id,
-            username:
-              user.username ||
-              user.first_name,
+            init_data: initData,
           }),
         }
       );
@@ -59,26 +64,44 @@ export default function LoginPage() {
       const data =
         await response.json();
 
-      console.log("LOGIN:", data);
+      console.log(
+        "LOGIN RESPONSE:",
+        data
+      );
 
       if (!response.ok) {
         alert(
           data.detail ||
             "Login error"
         );
+
+        setLoading(false);
+
         return;
       }
 
-      localStorage.setItem(
-        "token",
-        data.access_token
+      setAuth(
+        data.user,
+        data.access_token,
+        data.refresh_token
       );
 
-      window.location.href = "/";
+      if (
+        !data.user
+          .onboarding_completed
+      ) {
+        navigate(
+          "/onboarding"
+        );
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.error(error);
 
       alert("Login error");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -403,6 +426,7 @@ export default function LoginPage() {
       >
         <button
           onClick={handleLogin}
+          disabled={loading}
           className="
           w-full
           h-[74px]
@@ -419,11 +443,14 @@ export default function LoginPage() {
           items-center
           justify-center
           gap-3
+          disabled:opacity-70
         "
         >
           <Send size={22} />
 
-          Telegram orqali kirish
+          {loading
+            ? "Kirilmoqda..."
+            : "Telegram orqali kirish"}
         </button>
 
         <p
