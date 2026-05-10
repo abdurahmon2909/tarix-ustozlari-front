@@ -2,21 +2,32 @@ import {
   Clock3,
   ChevronLeft,
   Flag,
-  Check,
-  X,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
-const answers = [
-  "Sovet Ittifoqi",
-  "Rossiya imperiyasi",
-  "Rossiya Respublikasi",
-  "Sotsialistik davlat",
+const matchingQuestions = [
+  {
+    left: "Islom Karimov",
+    right:
+      "O‘zbekiston birinchi Prezidenti",
+  },
+  {
+    left: "Amir Temur",
+    right:
+      "Buyuk sarkarda va davlat arbobi",
+  },
+  {
+    left: "Buxoro amirligi",
+    right:
+      "XIX asrda Markaziy Osiyoda mavjud davlat",
+  },
+  {
+    left: "1917-yil fevral inqilobi",
+    right:
+      "Rossiyada yuz bergan inqilob",
+  },
 ];
-
-const selectedAnswer = 2;
-const correctAnswer = 2;
 
 export default function TestSessionPage() {
   return (
@@ -198,14 +209,14 @@ export default function TestSessionPage() {
           font-semibold
         "
         >
-          1917-yil fevral
-          inqilobi natijasida
-          Rossiyada qaysi
-          davlat tuzildi?
+          Quyidagi tarixiy
+          atamalarni to‘g‘ri
+          izohlar bilan
+          moslashtiring.
         </p>
       </motion.div>
 
-      {/* ANSWERS */}
+      {/* MATCHING */}
       <div
         className="
         relative
@@ -214,196 +225,90 @@ export default function TestSessionPage() {
         space-y-4
       "
       >
-        {answers.map(
-          (answer, index) => (
-            <motion.button
+        {matchingQuestions.map(
+          (item, index) => (
+            <motion.div
               key={index}
-              whileTap={{
-                scale: 0.98,
+              initial={{
+                opacity: 0,
+                y: 20,
               }}
-              whileHover={{
-                scale: 1.01,
+              animate={{
+                opacity: 1,
+                y: 0,
               }}
-              className={`
-                relative
-                overflow-hidden
-                w-full
-                rounded-[28px]
-                border
-                p-5
-                text-left
-                transition-all
-                duration-300
-
-                ${
-                  index === correctAnswer
-                    ? `
-                    border-green-500/40
-                    bg-green-500/10
-                    shadow-lg
-                    shadow-green-500/10
-                  `
-                    : index === selectedAnswer
-                    ? `
-                    border-red-500/40
-                    bg-red-500/10
-                    shadow-lg
-                    shadow-red-500/10
-                  `
-                    : `
-                    border-white/10
-                    bg-white/[0.03]
-                    hover:bg-white/[0.05]
-                  `
-                }
-              `}
+              transition={{
+                delay:
+                  0.1 +
+                  index * 0.05,
+              }}
+              className="
+              rounded-[28px]
+              border
+              border-white/10
+              bg-white/[0.03]
+              p-4
+              backdrop-blur-xl
+            "
             >
-              {/* GLOW */}
-              {(index ===
-                correctAnswer ||
-                index ===
-                  selectedAnswer) && (
-                <div
-                  className={`
-                  absolute
-                  inset-0
-                  opacity-30
-
-                  ${
-                    index ===
-                    correctAnswer
-                      ? "bg-green-500/10"
-                      : "bg-red-500/10"
-                  }
-                `}
-                />
-              )}
-
               <div
                 className="
-                relative
-                z-10
                 flex
-                items-center
-                justify-between
+                flex-col
                 gap-4
               "
               >
                 {/* LEFT */}
                 <div
                   className="
-                  flex
-                  items-center
-                  gap-4
+                  rounded-2xl
+                  bg-white/[0.03]
+                  border
+                  border-white/10
+                  px-4
+                  py-4
+                  text-lg
+                  font-semibold
                 "
                 >
-                  {/* RADIO */}
-                  <div
-                    className={`
-                    w-7
-                    h-7
-                    rounded-full
-                    border
-                    flex
-                    items-center
-                    justify-center
-
-                    ${
-                      index ===
-                      correctAnswer
-                        ? `
-                        border-green-400
-                        bg-green-400
-                      `
-                        : index ===
-                          selectedAnswer
-                        ? `
-                        border-red-400
-                        bg-red-400
-                      `
-                        : `
-                        border-white/20
-                      `
-                    }
-                  `}
-                  >
-                    {index ===
-                      correctAnswer && (
-                      <Check
-                        size={14}
-                        className="
-                        text-black
-                      "
-                      />
-                    )}
-
-                    {index ===
-                      selectedAnswer &&
-                      index !==
-                        correctAnswer && (
-                        <X
-                          size={14}
-                          className="
-                          text-black
-                        "
-                        />
-                      )}
-                  </div>
-
-                  {/* TEXT */}
-                  <span
-                    className="
-                    text-lg
-                    font-medium
-                    leading-relaxed
-                  "
-                  >
-                    {String.fromCharCode(
-                      65 + index
-                    )}
-                    ){" "}
-                    {answer}
-                  </span>
+                  {item.left}
                 </div>
 
-                {/* STATUS */}
-                {index ===
-                  correctAnswer && (
-                  <div
-                    className="
-                    px-3
-                    py-1.5
-                    rounded-full
-                    bg-green-500/20
-                    text-green-400
-                    text-xs
-                    font-semibold
-                  "
-                  >
-                    To‘g‘ri
-                  </div>
-                )}
+                {/* SELECT */}
+                <select
+                  className="
+                  w-full
+                  rounded-2xl
+                  border
+                  border-white/10
+                  bg-[#0f1725]
+                  px-4
+                  py-4
+                  text-white
+                  outline-none
+                "
+                >
+                  <option>
+                    Tanlang
+                  </option>
 
-                {index ===
-                  selectedAnswer &&
-                  index !==
-                    correctAnswer && (
-                    <div
-                      className="
-                      px-3
-                      py-1.5
-                      rounded-full
-                      bg-red-500/20
-                      text-red-400
-                      text-xs
-                      font-semibold
-                    "
-                    >
-                      Noto‘g‘ri
-                    </div>
+                  {matchingQuestions.map(
+                    (
+                      option,
+                      optionIndex
+                    ) => (
+                      <option
+                        key={
+                          optionIndex
+                        }
+                      >
+                        {option.right}
+                      </option>
+                    )
                   )}
+                </select>
               </div>
-            </motion.button>
+            </motion.div>
           )
         )}
       </div>
@@ -450,7 +355,7 @@ export default function TestSessionPage() {
           Belgilash
         </button>
 
-        {/* NEXT */}
+        {/* CHECK */}
         <button
           className="
           h-16
@@ -465,7 +370,7 @@ export default function TestSessionPage() {
           shadow-yellow-500/20
         "
         >
-          Keyingi →
+          Tekshirish
         </button>
       </motion.div>
     </div>
