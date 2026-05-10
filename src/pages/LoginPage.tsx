@@ -1,99 +1,263 @@
-import { useEffect } from "react";
+import {
+  Crown,
+  Sparkles,
+  Trophy,
+} from "lucide-react";
 
-import { useNavigate } from "react-router-dom";
-
-import { telegramLogin } from "../features/auth/auth.api";
-
-import { useAuthStore } from "../store/auth.store";
-
-import { useTelegram } from "../hooks/useTelegram";
-
-import Button from "../components/ui/Button";
+import { motion } from "framer-motion";
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-
-  const setAuth = useAuthStore(
-    (state: any) => state.setAuth
-  );
-
-  const { telegramUser } =
-    useTelegram();
-
   async function handleLogin() {
-    try {
-      console.log("BUTTON CLICKED");
-
-      console.log(
-        "Telegram user:",
-        telegramUser
-      );
-
-      const data =
-        await telegramLogin(
-          telegramUser?.id || 123456,
-          telegramUser?.username ||
-            "telegram_user"
-        );
-
-      console.log(
-        "LOGIN RESPONSE:",
-        data
-      );
-
-      setAuth(
-        data.user,
-        data.access_token
-      );
-
-
-      navigate("/");
-    } catch (error: any) {
-      console.error(error);
-
-      console.log(
-        "ERROR RESPONSE:",
-        error?.response?.data
-      );
-
-      console.log(
-        "ERROR MESSAGE:",
-        error?.message
-      );
-
-      alert(
-        JSON.stringify(
-          error?.response?.data ||
-            error?.message
-        )
-      );
-    }
+    console.log("Telegram auth");
   }
 
-  useEffect(() => {
-    if (telegramUser) {
-      handleLogin();
-    }
-  }, [telegramUser]);
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6">
-      <div className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold">
-          Tarix Ustozlari
-        </h1>
+    <div className="relative min-h-screen overflow-hidden bg-[#071120] flex flex-col justify-between px-6 py-10">
+      {/* GLOWS */}
+      <div
+        className="
+        absolute
+        top-0
+        left-0
+        w-72
+        h-72
+        rounded-full
+        bg-yellow-500/20
+        blur-[120px]
+      "
+      />
 
-        <p className="mt-2 text-gray-500">
-          Telegram orqali kirish
-        </p>
+      <div
+        className="
+        absolute
+        bottom-0
+        right-0
+        w-72
+        h-72
+        rounded-full
+        bg-blue-500/20
+        blur-[120px]
+      "
+      />
 
-        <Button
-          className="mt-6 w-full"
-          onClick={handleLogin}
+      {/* TOP */}
+      <div className="relative z-10">
+        {/* LOGO */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            scale: 0.8,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          className="
+          w-24
+          h-24
+          rounded-[32px]
+          bg-gradient-to-br
+          from-yellow-400
+          to-yellow-600
+          flex
+          items-center
+          justify-center
+          shadow-2xl
+          shadow-yellow-500/30
+        "
         >
-          Telegram Login
-        </Button>
+          <Crown
+            size={42}
+            className="text-black"
+          />
+        </motion.div>
+
+        {/* TITLE */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.1,
+          }}
+          className="mt-10"
+        >
+          <p className="text-yellow-400">
+            Premium tarix platformasi
+          </p>
+
+          <h1
+            className="
+            text-6xl
+            font-bold
+            mt-4
+            leading-tight
+          "
+          >
+            Tarix
+            <br />
+            Ustozlari
+          </h1>
+
+          <p
+            className="
+            text-gray-400
+            text-lg
+            leading-relaxed
+            mt-6
+          "
+          >
+            AI yordamida tarixni
+            o‘rganing, arena janglarida
+            qatnashing va reytingda
+            yuqoriga ko‘tariling.
+          </p>
+        </motion.div>
+
+        {/* FEATURES */}
+        <div className="mt-10 space-y-4">
+          <div
+            className="
+            flex
+            items-center
+            gap-4
+          "
+          >
+            <div
+              className="
+              w-14
+              h-14
+              rounded-2xl
+              bg-white/5
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+            "
+            >
+              <Sparkles
+                className="
+                text-cyan-400
+              "
+              />
+            </div>
+
+            <div>
+              <h3
+                className="
+                text-xl
+                font-bold
+              "
+              >
+                AI Testlar
+              </h3>
+
+              <p className="text-gray-400">
+                Smart recommendation system
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="
+            flex
+            items-center
+            gap-4
+          "
+          >
+            <div
+              className="
+              w-14
+              h-14
+              rounded-2xl
+              bg-white/5
+              border
+              border-white/10
+              flex
+              items-center
+              justify-center
+            "
+            >
+              <Trophy
+                className="
+                text-yellow-400
+              "
+              />
+            </div>
+
+            <div>
+              <h3
+                className="
+                text-xl
+                font-bold
+              "
+              >
+                Reyting tizimi
+              </h3>
+
+              <p className="text-gray-400">
+                XP va leaderboard
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* BUTTON */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.2,
+        }}
+        className="
+        relative
+        z-10
+      "
+      >
+        <button
+          onClick={handleLogin}
+          className="
+          w-full
+          py-5
+          rounded-3xl
+          bg-gradient-to-r
+          from-yellow-400
+          to-yellow-600
+          text-black
+          text-xl
+          font-bold
+          shadow-2xl
+          shadow-yellow-500/30
+        "
+        >
+          Telegram orqali kirish
+        </button>
+
+        <p
+          className="
+          text-center
+          text-gray-500
+          mt-5
+        "
+        >
+          Davom etish orqali siz
+          platforma qoidalariga
+          rozilik bildirasiz.
+        </p>
+      </motion.div>
     </div>
   );
 }
