@@ -2,6 +2,7 @@ import {
   House,
   BookOpen,
   Swords,
+  Library,
   User,
 } from "lucide-react";
 
@@ -20,6 +21,11 @@ export default function BottomNav() {
       to: "/tests",
       icon: BookOpen,
       label: "Tests",
+    },
+    {
+      to: "/books",
+      icon: Library,
+      label: "Books",
     },
     {
       to: "/arena",
@@ -43,16 +49,22 @@ export default function BottomNav() {
       z-50
       border-t
       border-white/10
-      bg-[#09111f]/90
+      bg-[#08101d]/95
       backdrop-blur-2xl
+      shadow-2xl
     "
+      style={{
+        paddingBottom:
+          "env(safe-area-inset-bottom)",
+      }}
     >
       <div
         className="
         max-w-md
         mx-auto
+        h-20
         grid
-        grid-cols-4
+        grid-cols-5
       "
       >
         {items.map((item) => {
@@ -66,13 +78,14 @@ export default function BottomNav() {
                 isActive,
               }) =>
                 `
+                relative
                 flex
                 flex-col
                 items-center
                 justify-center
-                py-4
                 gap-1
                 transition-all
+                duration-300
 
                 ${
                   isActive
@@ -82,15 +95,40 @@ export default function BottomNav() {
               `
               }
             >
-              <Icon size={22} />
+              {({
+                isActive,
+              }) => (
+                <>
+                  {/* ACTIVE GLOW */}
+                  {isActive && (
+                    <div
+                      className="
+                      absolute
+                      inset-0
+                      rounded-2xl
+                      bg-yellow-400/5
+                    "
+                    />
+                  )}
 
-              <span
-                className="
-                text-xs
-              "
-              >
-                {item.label}
-              </span>
+                  {/* ICON */}
+                  <div className="relative z-10">
+                    <Icon size={22} />
+                  </div>
+
+                  {/* LABEL */}
+                  <span
+                    className="
+                    relative
+                    z-10
+                    text-[11px]
+                    font-medium
+                  "
+                  >
+                    {item.label}
+                  </span>
+                </>
+              )}
             </NavLink>
           );
         })}
