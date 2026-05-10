@@ -4,9 +4,61 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  animate,
+} from "framer-motion";
+
+import {
+  useEffect,
+  useState,
+} from "react";
+
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 export default function TestResultPage() {
+  const location =
+    useLocation();
+
+  const navigate =
+    useNavigate();
+
+  const score =
+    location.state?.score || 0;
+
+  const total =
+    location.state?.total || 0;
+
+  const percent = Math.round(
+    (score / total) * 100
+  );
+
+  const xp = score * 15;
+
+  const [
+    animatedScore,
+    setAnimatedScore,
+  ] = useState(0);
+
+  useEffect(() => {
+    const controls =
+      animate(0, score, {
+        duration: 1.5,
+
+        onUpdate(value) {
+          setAnimatedScore(
+            Math.floor(value)
+          );
+        },
+      });
+
+    return () =>
+      controls.stop();
+  }, [score]);
+
   return (
     <div className="relative pt-4 pb-12">
       {/* BACKGROUND */}
@@ -72,7 +124,8 @@ export default function TestResultPage() {
             text-lg
           "
           >
-            Siz testni muvaffaqiyatli
+            Siz testni
+            muvaffaqiyatli
             yakunladingiz
           </p>
         </motion.div>
@@ -113,6 +166,7 @@ export default function TestResultPage() {
             to-[#0a1422]
             shadow-2xl
             shadow-yellow-500/20
+            animate-pulse
           "
           >
             {/* INNER GLOW */}
@@ -135,7 +189,7 @@ export default function TestResultPage() {
                 text-yellow-400
               "
               >
-                28
+                {animatedScore}
               </h2>
 
               <p
@@ -145,7 +199,7 @@ export default function TestResultPage() {
                 text-lg
               "
               >
-                / 35
+                / {total}
               </p>
 
               <div
@@ -165,8 +219,20 @@ export default function TestResultPage() {
               >
                 <Trophy size={16} />
 
-                80%
+                {percent}%
               </div>
+
+              <p
+                className="
+                mt-3
+                text-sm
+                text-gray-400
+              "
+              >
+                Siz TOP 12%
+                foydalanuvchilar
+                qatoridasiz
+              </p>
             </div>
           </div>
         </motion.div>
@@ -245,8 +311,19 @@ export default function TestResultPage() {
                   mt-1
                 "
                 >
-                  +300 XP
+                  +{xp} XP
                 </h3>
+
+                <p
+                  className="
+                  mt-2
+                  text-xs
+                  text-yellow-300
+                "
+                >
+                  Yangi levelga
+                  yaqinlashdingiz
+                </p>
               </div>
             </div>
           </div>
@@ -305,11 +382,58 @@ export default function TestResultPage() {
                   mt-1
                 "
                 >
-                  28 ta
+                  {score} ta
                 </h3>
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* STREAK */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            scale: 0.8,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            delay: 0.4,
+          }}
+          className="
+          mt-8
+          rounded-[28px]
+          border
+          border-yellow-500/20
+          bg-yellow-500/10
+          p-5
+          text-center
+        "
+        >
+          <p
+            className="
+            text-yellow-300
+            font-semibold
+            text-lg
+          "
+          >
+            🔥 3 kunlik streak
+            davom etmoqda
+          </p>
+
+          <p
+            className="
+            mt-2
+            text-sm
+            text-yellow-100/70
+          "
+          >
+            Har kuni test
+            ishlashni davom
+            ettiring
+          </p>
         </motion.div>
 
         {/* BUTTONS */}
@@ -343,11 +467,15 @@ export default function TestResultPage() {
             font-semibold
           "
           >
-            Xatolar ustida ishlash
+            Xatolar ustida
+            ishlash
           </button>
 
           {/* HOME */}
           <button
+            onClick={() =>
+              navigate("/")
+            }
             className="
             w-full
             h-16
@@ -362,7 +490,8 @@ export default function TestResultPage() {
             shadow-yellow-500/20
           "
           >
-            Bosh sahifaga qaytish
+            Bosh sahifaga
+            qaytish
           </button>
         </motion.div>
       </div>
