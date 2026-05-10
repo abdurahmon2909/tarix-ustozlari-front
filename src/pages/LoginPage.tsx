@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { telegramLogin } from "../features/auth/auth.api";
 
 import { useAuthStore } from "../store/auth.store";
@@ -9,6 +11,8 @@ import { useTelegram } from "../hooks/useTelegram";
 import Button from "../components/ui/Button";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   const setAuth = useAuthStore(
     (state: any) => state.setAuth
   );
@@ -43,6 +47,8 @@ export default function LoginPage() {
       );
 
       alert("Login success");
+
+      navigate("/");
     } catch (error) {
       console.error(error);
 
