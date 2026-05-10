@@ -46,7 +46,6 @@ export default function LoginPage() {
         data.access_token
       );
 
-      alert("Login success");
 
       navigate("/");
     } catch (error: any) {
