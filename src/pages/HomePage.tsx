@@ -39,7 +39,74 @@ export default function HomePage() {
         rounded-full
       "
       />
+{/* LIVE TICKER */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: -20,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  className="
+  relative
+  z-10
+  overflow-hidden
+  rounded-2xl
+  border
+  border-yellow-500/10
+  bg-white/[0.03]
+  backdrop-blur-xl
+"
+>
+  <div
+    className="
+    flex
+    items-center
+    gap-3
+    px-4
+    py-3
+    whitespace-nowrap
+    animate-pulse
+  "
+  >
+    {/* LIVE */}
+    <div
+      className="
+      flex
+      items-center
+      gap-2
+      text-red-400
+      font-semibold
+      text-sm
+    "
+    >
+      <div
+        className="
+        w-2
+        h-2
+        rounded-full
+        bg-red-500
+      "
+      />
 
+      LIVE
+    </div>
+
+    <div
+      className="
+      text-gray-300
+      text-sm
+    "
+    >
+      🔥 Bugungi challenge yangilandi •
+      🏆 Arena season boshlandi •
+      🤖 AI tavsiyalar aktiv •
+      📚 Yangi testlar qo‘shildi
+    </div>
+  </div>
+</motion.div>
       {/* HEADER */}
       <motion.div
         initial={{
