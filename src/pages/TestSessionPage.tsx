@@ -567,7 +567,7 @@ export default function TestSessionPage() {
                         Tanlang
                       </option>
 
-                      {currentData.matching.map(
+                      {currentData.matching?.map(
                         (
                           option: MatchingItem,
                           optionIndex: number
