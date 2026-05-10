@@ -1022,7 +1022,363 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+{/* AI RECOMMENDATIONS */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: 20,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    delay: 0.2,
+  }}
+  className="relative z-10"
+>
+  {/* HEADER */}
+  <div
+    className="
+    flex
+    items-center
+    justify-between
+    mb-4
+  "
+  >
+    <h2
+      className="
+      text-2xl
+      font-bold
+    "
+    >
+      AI tavsiyalari
+    </h2>
 
+    <button
+      className="
+      text-yellow-400
+      text-sm
+    "
+    >
+      Barchasi
+    </button>
+  </div>
+
+  {/* CARDS */}
+  <div
+    className="
+    flex
+    gap-4
+    overflow-x-auto
+    pb-2
+    scrollbar-hide
+  "
+  >
+    {/* CARD 1 */}
+    <div
+      className="
+      min-w-[240px]
+      rounded-[28px]
+      overflow-hidden
+      border
+      border-white/10
+      bg-gradient-to-br
+      from-[#132238]
+      to-[#0b1523]
+      shadow-xl
+      shadow-blue-500/10
+    "
+    >
+      {/* IMAGE */}
+      <div
+        className="
+        h-32
+        bg-gradient-to-br
+        from-yellow-700
+        to-yellow-900
+        flex
+        items-center
+        justify-center
+        text-6xl
+      "
+      >
+        📚
+      </div>
+
+      {/* CONTENT */}
+      <div className="p-5">
+        <p
+          className="
+          text-gray-400
+          text-sm
+        "
+        >
+          O‘zbekiston tarixi
+        </p>
+
+        <h3
+          className="
+          mt-2
+          text-xl
+          font-bold
+        "
+        >
+          Temuriylar davri
+        </h3>
+
+        <div
+          className="
+          mt-4
+          flex
+          items-center
+          justify-between
+        "
+        >
+          <div>
+            <p
+              className="
+              text-yellow-400
+              font-semibold
+            "
+            >
+              +20 XP
+            </p>
+
+            <p
+              className="
+              text-xs
+              text-gray-500
+              mt-1
+            "
+            >
+              8-sinf
+            </p>
+          </div>
+
+          <button
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-white/10
+            border
+            border-white/10
+            flex
+            items-center
+            justify-center
+            text-xl
+          "
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* CARD 2 */}
+    <div
+      className="
+      min-w-[240px]
+      rounded-[28px]
+      overflow-hidden
+      border
+      border-white/10
+      bg-gradient-to-br
+      from-[#1a2b47]
+      to-[#101726]
+      shadow-xl
+      shadow-cyan-500/10
+    "
+    >
+      {/* IMAGE */}
+      <div
+        className="
+        h-32
+        bg-gradient-to-br
+        from-cyan-700
+        to-blue-900
+        flex
+        items-center
+        justify-center
+        text-6xl
+      "
+      >
+        🌍
+      </div>
+
+      {/* CONTENT */}
+      <div className="p-5">
+        <p
+          className="
+          text-gray-400
+          text-sm
+        "
+        >
+          Jahon tarixi
+        </p>
+
+        <h3
+          className="
+          mt-2
+          text-xl
+          font-bold
+        "
+        >
+          Sovuq urush
+        </h3>
+
+        <div
+          className="
+          mt-4
+          flex
+          items-center
+          justify-between
+        "
+        >
+          <div>
+            <p
+              className="
+              text-cyan-400
+              font-semibold
+            "
+            >
+              +35 XP
+            </p>
+
+            <p
+              className="
+              text-xs
+              text-gray-500
+              mt-1
+            "
+            >
+              9-sinf
+            </p>
+          </div>
+
+          <button
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-white/10
+            border
+            border-white/10
+            flex
+            items-center
+            justify-center
+            text-xl
+          "
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* CARD 3 */}
+    <div
+      className="
+      min-w-[240px]
+      rounded-[28px]
+      overflow-hidden
+      border
+      border-white/10
+      bg-gradient-to-br
+      from-[#2d1a42]
+      to-[#161020]
+      shadow-xl
+      shadow-pink-500/10
+    "
+    >
+      {/* IMAGE */}
+      <div
+        className="
+        h-32
+        bg-gradient-to-br
+        from-pink-700
+        to-purple-900
+        flex
+        items-center
+        justify-center
+        text-6xl
+      "
+      >
+        🏛
+      </div>
+
+      {/* CONTENT */}
+      <div className="p-5">
+        <p
+          className="
+          text-gray-400
+          text-sm
+        "
+        >
+          Qadimgi dunyo
+        </p>
+
+        <h3
+          className="
+          mt-2
+          text-xl
+          font-bold
+        "
+        >
+          Rim imperiyasi
+        </h3>
+
+        <div
+          className="
+          mt-4
+          flex
+          items-center
+          justify-between
+        "
+        >
+          <div>
+            <p
+              className="
+              text-pink-400
+              font-semibold
+            "
+            >
+              +50 XP
+            </p>
+
+            <p
+              className="
+              text-xs
+              text-gray-500
+              mt-1
+            "
+            >
+              Advanced
+            </p>
+          </div>
+
+          <button
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-white/10
+            border
+            border-white/10
+            flex
+            items-center
+            justify-center
+            text-xl
+          "
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
       {/* QUOTE */}
       <div
         className="
