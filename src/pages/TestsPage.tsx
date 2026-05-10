@@ -6,6 +6,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+import {
+  motion,
+} from "framer-motion";
+
 import Empty from "../components/ui/Empty";
 
 import PageHeader from "../components/ui/PageHeader";
@@ -60,40 +64,114 @@ export default function TestsPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <PageHeader
-        title="Testlar"
-        subtitle="Bilimingizni sinab ko‘ring"
+    <div className="relative space-y-6 pt-6">
+      {/* BACKGROUND GLOW */}
+      <div
+        className="
+        absolute
+        top-0
+        left-0
+        w-72
+        h-72
+        rounded-full
+        bg-blue-500/20
+        blur-[120px]
+      "
       />
 
+      {/* HEADER */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: -20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        className="relative z-10"
+      >
+        <PageHeader
+          title="Testlar"
+          subtitle="Bilimingizni sinab ko‘ring"
+        />
+      </motion.div>
+
+      {/* LOADING */}
       {isLoading && (
-        <>
+        <div className="space-y-4 relative z-10">
           <TestCardSkeleton />
           <TestCardSkeleton />
           <TestCardSkeleton />
-        </>
+        </div>
       )}
 
+      {/* EMPTY */}
       {!isLoading &&
         !data?.length && (
-          <Empty title="Testlar topilmadi" />
+          <div className="relative z-10">
+            <Empty title="Testlar topilmadi" />
+          </div>
         )}
 
-      {data?.map((test: any) => (
-        <TestCard
-          key={test.id}
-          test={test}
-          onStart={() =>
-            handleStart(test.id)
-          }
-        />
-      ))}
+      {/* TESTS */}
+      <div className="space-y-5 relative z-10">
+        {data?.map(
+          (
+            test: any,
+            index: number
+          ) => (
+            <motion.div
+              key={test.id}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay:
+                  index * 0.05,
+              }}
+              onClick={() =>
+                handleStart(test.id)
+              }
+            >
+              <TestCard
+                title={
+                  test.title ||
+                  "Tarix testi"
+                }
+                questionsCount={
+                  test.questions_count ||
+                  test.questionsCount ||
+                  20
+                }
+                difficulty={
+                  test.difficulty ||
+                  "O‘rta"
+                }
+                xp={
+                  test.xp ||
+                  test.reward_xp ||
+                  100
+                }
+              />
+            </motion.div>
+          )
+        )}
+      </div>
 
-      <Pagination
-        page={page}
-        totalPages={10}
-        onChange={setPage}
-      />
+      {/* PAGINATION */}
+      <div className="relative z-10 pb-24">
+        <Pagination
+          page={page}
+          totalPages={10}
+          onChange={setPage}
+        />
+      </div>
     </div>
   );
 }
