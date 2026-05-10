@@ -4,40 +4,99 @@ import {
   Trophy,
 } from "lucide-react";
 
-import {
-  motion
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
-    <div className="pt-6 space-y-6">
-      {/* HEADER */}
+    <div className="relative overflow-hidden pt-6 space-y-6">
+      {/* BACKGROUND GLOWS */}
       <div
         className="
+        absolute
+        top-0
+        left-0
+        w-72
+        h-72
+        bg-yellow-500/20
+        blur-[120px]
+        rounded-full
+      "
+      />
+
+      <div
+        className="
+        absolute
+        top-40
+        right-0
+        w-72
+        h-72
+        bg-blue-500/20
+        blur-[120px]
+        rounded-full
+      "
+      />
+
+      {/* HEADER */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: -20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        className="
+        relative
+        z-10
         flex
         items-center
         justify-between
       "
       >
-        <div>
-          <p className="text-gray-400 text-sm">
-            Assalomu alaykum
-          </p>
-
-          <h1
+        <div className="flex items-center gap-4">
+          <div
             className="
-            text-3xl
+            w-14
+            h-14
+            rounded-2xl
+            bg-gradient-to-br
+            from-yellow-400
+            to-yellow-600
+            flex
+            items-center
+            justify-center
+            text-black
+            text-xl
             font-bold
+            shadow-lg
+            shadow-yellow-500/30
           "
           >
-            Abdurahmon
-          </h1>
+            A
+          </div>
+
+          <div>
+            <p className="text-gray-400 text-sm">
+              Xush kelibsiz 👋
+            </p>
+
+            <h1
+              className="
+              text-3xl
+              font-bold
+            "
+            >
+              Abdurahmon
+            </h1>
+          </div>
         </div>
 
         <button
           className="
-          w-12
-          h-12
+          relative
+          w-14
+          h-14
           rounded-2xl
           bg-white/5
           border
@@ -45,11 +104,24 @@ export default function HomePage() {
           flex
           items-center
           justify-center
+          backdrop-blur-xl
         "
         >
           <Bell size={22} />
+
+          <div
+            className="
+            absolute
+            top-3
+            right-3
+            w-2
+            h-2
+            rounded-full
+            bg-yellow-400
+          "
+          />
         </button>
-      </div>
+      </motion.div>
 
       {/* XP CARD */}
       <motion.div
@@ -62,6 +134,8 @@ export default function HomePage() {
           y: 0,
         }}
         className="
+        relative
+        z-10
         rounded-3xl
         p-5
         bg-gradient-to-br
@@ -69,6 +143,8 @@ export default function HomePage() {
         to-[#09111d]
         border
         border-yellow-500/20
+        shadow-2xl
+        shadow-yellow-500/10
       "
       >
         <div
@@ -107,7 +183,9 @@ export default function HomePage() {
           >
             <Trophy
               size={32}
-              className="text-yellow-400"
+              className="
+              text-yellow-400
+            "
             />
           </div>
         </div>
@@ -149,6 +227,8 @@ export default function HomePage() {
           delay: 0.1,
         }}
         className="
+        relative
+        z-10
         rounded-3xl
         p-5
         bg-gradient-to-br
@@ -156,6 +236,8 @@ export default function HomePage() {
         to-[#08111d]
         border
         border-white/10
+        shadow-xl
+        shadow-blue-500/10
       "
       >
         <div
@@ -209,6 +291,8 @@ export default function HomePage() {
           text-black
           font-bold
           text-lg
+          transition
+          hover:scale-[1.02]
         "
         >
           Boshlash
@@ -216,7 +300,15 @@ export default function HomePage() {
       </motion.div>
 
       {/* STATS */}
-      <div className="grid grid-cols-2 gap-4">
+      <div
+        className="
+        relative
+        z-10
+        grid
+        grid-cols-2
+        gap-4
+      "
+      >
         <div
           className="
           rounded-3xl
@@ -224,6 +316,7 @@ export default function HomePage() {
           bg-white/5
           border
           border-white/10
+          backdrop-blur-xl
         "
         >
           <p className="text-gray-400">
@@ -248,6 +341,7 @@ export default function HomePage() {
           bg-white/5
           border
           border-white/10
+          backdrop-blur-xl
         "
         >
           <p className="text-gray-400">
@@ -269,6 +363,8 @@ export default function HomePage() {
       {/* QUOTE */}
       <div
         className="
+        relative
+        z-10
         rounded-3xl
         p-6
         bg-gradient-to-r
