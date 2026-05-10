@@ -1,35 +1,96 @@
 import {
+  Home,
   BookOpen,
-  House,
   Swords,
   Trophy,
-  User,
+  User
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import {
+  NavLink
+} from "react-router-dom";
 
-export default function BottomNavbar() {
+const navItems = [
+  {
+    to: "/",
+    icon: Home,
+    label: "Bosh sahifa",
+  },
+  {
+    to: "/tests",
+    icon: BookOpen,
+    label: "Testlar",
+  },
+  {
+    to: "/arena",
+    icon: Swords,
+    label: "Arena",
+  },
+  {
+    to: "/leaderboard",
+    icon: Trophy,
+    label: "Top",
+  },
+  {
+    to: "/profile",
+    icon: User,
+    label: "Profil",
+  },
+];
+
+export default function BottomNav() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex justify-around border-t bg-white p-4">
-      <Link to="/">
-        <House />
-      </Link>
+    <div
+      className="
+      fixed
+      bottom-0
+      left-0
+      right-0
+      z-50
+      border-t
+      border-white/10
+      bg-[#08111f]
+      backdrop-blur-xl
+    "
+    >
+      <div
+        className="
+        flex
+        items-center
+        justify-around
+        py-3
+      "
+      >
+        {navItems.map((item) => {
+          const Icon = item.icon;
 
-      <Link to="/tests">
-        <Trophy />
-      </Link>
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                `
+                flex
+                flex-col
+                items-center
+                gap-1
+                text-xs
+                transition
 
-      <Link to="/arena">
-        <Swords />
-      </Link>
-
-      <Link to="/books">
-        <BookOpen />
-      </Link>
-
-      <Link to="/profile">
-        <User />
-      </Link>
+                ${
+                  isActive
+                    ? "text-yellow-400"
+                    : "text-gray-400"
+                }
+              `
+              }
+            >
+              <Icon size={22} />
+              <span>{item.label}</span>
+            </NavLink>
+          );
+        })}
+      </div>
     </div>
   );
 }

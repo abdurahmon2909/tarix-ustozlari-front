@@ -22,6 +22,7 @@ import TestResultPage from "../pages/TestResultPage";
 
 import ErrorBoundary from "../components/ui/ErrorBoundary";
 import MainLayout from "../components/layout/MainLayout";
+import AppShell from "../components/layout/AppShell";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 import BattlePage from "../pages/BattlePage";
@@ -39,7 +40,7 @@ export default function AppRouter() {
           path="/"
           element={
             <ProtectedRoute>
-              <MainLayout />
+              <AppShell />
             </ProtectedRoute>
           }
         >

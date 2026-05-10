@@ -7,48 +7,20 @@ body,
 #root {
   width: 100%;
   min-height: 100%;
-}
-
-:root {
-  --bg: #f5f7fb;
-
-  --text: #111827;
-
-  --card: #ffffff;
-
-  --border: #e5e7eb;
-}
-
-[data-theme="dark"] {
-  --bg: #0f172a;
-
-  --text: #f8fafc;
-
-  --card: #111827;
-
-  --border: #1f2937;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-
-  background: var(--bg);
-
-  color: var(--text);
-
-  font-family:
-    Inter,
-    sans-serif;
-
-  transition:
-    background 0.2s,
-    color 0.2s;
+  background: #071120;
+  color: white;
+  font-family: Inter, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-button {
-  cursor: pointer;
+::-webkit-scrollbar {
+  display: none;
 }
