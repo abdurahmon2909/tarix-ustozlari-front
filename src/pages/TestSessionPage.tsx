@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 
 /* =========================
    QUESTION TYPE
@@ -22,13 +23,6 @@ type QuestionType =
    ACTIVE TYPE
 ========================= */
 
-// BU YERNI O‘ZGARTIRIB TEST QILING:
-// "mcq"
-// "matching"
-// "chronology"
-
-const questionType: QuestionType =
-  "mcq";
 
 /* =========================
    MCQ DATA
@@ -87,6 +81,41 @@ const mapRegions = [
   "Buxoro",
   "Xorazm",
 ];
+const questions: QuestionType[] = [
+  "mcq",
+  "matching",
+  "chronology",
+  "map",
+];
+
+export default function TestSessionPage() {
+
+  const [
+    currentQuestion,
+    setCurrentQuestion,
+  ] = useState(0);
+
+  const questionType = useMemo(
+    () =>
+      questions[
+        currentQuestion %
+          questions.length
+      ],
+    [currentQuestion]
+  );
+
+  return (
+const [currentQuestion, setCurrentQuestion] =
+  useState(0);
+
+const questionType = useMemo(
+  () =>
+    questions[
+      currentQuestion %
+        questions.length
+    ],
+  [currentQuestion]
+);
 export default function TestSessionPage() {
   return (
     <div className="relative pt-2 pb-10">
@@ -158,7 +187,7 @@ export default function TestSessionPage() {
             mt-1
           "
           >
-            7 / 30
+            {currentQuestion + 1} / 30
           </h2>
         </div>
 
@@ -222,7 +251,7 @@ export default function TestSessionPage() {
           <div
             className="
             h-full
-            w-[23%]
+            w-full
             rounded-full
             bg-gradient-to-r
             from-yellow-400
