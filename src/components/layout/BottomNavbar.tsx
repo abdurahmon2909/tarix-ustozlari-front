@@ -1,44 +1,44 @@
 import {
-  Home,
-  BookOpen,
-  Swords,
+  House,
   Trophy,
-  User
+  Swords,
+  BookOpen,
+  User,
 } from "lucide-react";
 
 import {
-  NavLink
+  NavLink,
 } from "react-router-dom";
 
-const navItems = [
+const items = [
   {
     to: "/",
-    icon: Home,
     label: "Bosh sahifa",
-  },
-  {
-    to: "/tests",
-    icon: BookOpen,
-    label: "Testlar",
-  },
-  {
-    to: "/arena",
-    icon: Swords,
-    label: "Arena",
+    icon: House,
   },
   {
     to: "/leaderboard",
-    icon: Trophy,
     label: "Top",
+    icon: Trophy,
+  },
+  {
+    to: "/arena",
+    label: "Arena",
+    icon: Swords,
+  },
+  {
+    to: "/books",
+    label: "Kitoblar",
+    icon: BookOpen,
   },
   {
     to: "/profile",
-    icon: User,
     label: "Profil",
+    icon: User,
   },
 ];
 
-export default function BottomNav() {
+export default function BottomNavbar() {
   return (
     <div
       className="
@@ -49,19 +49,22 @@ export default function BottomNav() {
       z-50
       border-t
       border-white/10
-      bg-[#08111f]
-      backdrop-blur-xl
+      bg-[#071120]/90
+      backdrop-blur-2xl
+      px-2
+      py-3
     "
     >
       <div
         className="
+        max-w-md
+        mx-auto
         flex
         items-center
-        justify-around
-        py-3
+        justify-between
       "
       >
-        {navItems.map((item) => {
+        {items.map((item) => {
           const Icon = item.icon;
 
           return (
@@ -74,19 +77,30 @@ export default function BottomNav() {
                 flex-col
                 items-center
                 gap-1
-                text-xs
-                transition
+                px-3
+                py-2
+                rounded-2xl
+                transition-all
+                duration-300
 
                 ${
                   isActive
-                    ? "text-yellow-400"
+                    ? "text-yellow-400 bg-yellow-400/10"
                     : "text-gray-400"
                 }
               `
               }
             >
               <Icon size={22} />
-              <span>{item.label}</span>
+
+              <span
+                className="
+                text-[11px]
+                font-medium
+              "
+              >
+                {item.label}
+              </span>
             </NavLink>
           );
         })}
