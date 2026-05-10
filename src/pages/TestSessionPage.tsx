@@ -19,7 +19,8 @@ import {
 
 import {
   testQuestions,
-} from "@/data/testQuestions";
+  MatchingItem,
+} from "../data/testQuestions";
 
 export default function TestSessionPage() {
   const navigate =
@@ -308,7 +309,6 @@ export default function TestSessionPage() {
 
       {questionType === "mcq" && (
         <>
-          {/* QUESTION */}
           <motion.div
             initial={{
               opacity: 0,
@@ -344,7 +344,6 @@ export default function TestSessionPage() {
             </p>
           </motion.div>
 
-          {/* ANSWERS */}
           <div
             className="
             relative
@@ -355,8 +354,8 @@ export default function TestSessionPage() {
           >
             {currentData.answers?.map(
               (
-                answer,
-                index
+                answer: string,
+                index: number
               ) => (
                 <motion.button
                   key={index}
@@ -402,21 +401,11 @@ export default function TestSessionPage() {
                     className="
                     flex
                     items-center
-                    justify-between
                     gap-4
                   "
                   >
-                    {/* LEFT */}
                     <div
-                      className="
-                      flex
-                      items-center
-                      gap-4
-                    "
-                    >
-                      {/* RADIO */}
-                      <div
-                        className={`
+                      className={`
                         w-7
                         h-7
                         rounded-full
@@ -445,47 +434,44 @@ export default function TestSessionPage() {
                           `
                         }
                       `}
-                      >
-                        {selectedMcq !==
-                          null &&
-                          index ===
-                            currentData.correctAnswer && (
-                            <Check
-                              size={14}
-                              className="
-                              text-black
-                            "
-                            />
-                          )}
-
-                        {index ===
-                          selectedMcq &&
-                          index !==
-                            currentData.correctAnswer && (
-                            <X
-                              size={14}
-                              className="
-                              text-black
-                            "
-                            />
-                          )}
-                      </div>
-
-                      {/* TEXT */}
-                      <span
-                        className="
-                        text-lg
-                        font-medium
-                        leading-relaxed
-                      "
-                      >
-                        {String.fromCharCode(
-                          65 + index
+                    >
+                      {selectedMcq !==
+                        null &&
+                        index ===
+                          currentData.correctAnswer && (
+                          <Check
+                            size={14}
+                            className="
+                            text-black
+                          "
+                          />
                         )}
-                        ){" "}
-                        {answer}
-                      </span>
+
+                      {index ===
+                        selectedMcq &&
+                        index !==
+                          currentData.correctAnswer && (
+                          <X
+                            size={14}
+                            className="
+                            text-black
+                          "
+                          />
+                        )}
                     </div>
+
+                    <span
+                      className="
+                      text-lg
+                      font-medium
+                    "
+                    >
+                      {String.fromCharCode(
+                        65 + index
+                      )}
+                      ){" "}
+                      {answer}
+                    </span>
                   </div>
                 </motion.button>
               )
@@ -536,7 +522,10 @@ export default function TestSessionPage() {
           "
           >
             {currentData.matching?.map(
-              (item, index) => (
+              (
+                item: MatchingItem,
+                index: number
+              ) => (
                 <div
                   key={index}
                   className="
@@ -580,8 +569,8 @@ export default function TestSessionPage() {
 
                       {currentData.matching.map(
                         (
-                          option,
-                          optionIndex
+                          option: MatchingItem,
+                          optionIndex: number
                         ) => (
                           <option
                             key={
@@ -646,8 +635,8 @@ export default function TestSessionPage() {
           >
             {currentData.chronology?.map(
               (
-                event,
-                index
+                event: string,
+                index: number
               ) => (
                 <motion.div
                   key={index}
@@ -772,8 +761,8 @@ export default function TestSessionPage() {
 
               {currentData.mapRegions?.map(
                 (
-                  region,
-                  index
+                  region: string,
+                  index: number
                 ) => (
                   <motion.button
                     key={index}
@@ -823,7 +812,6 @@ export default function TestSessionPage() {
         gap-4
       "
       >
-        {/* FLAG */}
         <button
           className="
           h-16
@@ -839,11 +827,9 @@ export default function TestSessionPage() {
         "
         >
           <Flag size={18} />
-
           Belgilash
         </button>
 
-        {/* NEXT */}
         <button
           onClick={nextQuestion}
           disabled={

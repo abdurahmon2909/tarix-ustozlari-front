@@ -4,19 +4,23 @@ export type QuestionType =
   | "chronology"
   | "map";
 
+export interface MatchingItem {
+  left: string;
+  right: string;
+}
+
 export interface TestQuestion {
   id: number;
+
   type: QuestionType;
+
   question: string;
 
   answers?: string[];
 
   correctAnswer?: number;
 
-  matching?: {
-    left: string;
-    right: string;
-  }[];
+  matching?: MatchingItem[];
 
   chronology?: string[];
 
@@ -27,7 +31,9 @@ export const testQuestions: TestQuestion[] =
   [
     {
       id: 1,
+
       type: "mcq",
+
       question:
         "1917-yil fevral inqilobi natijasida Rossiyada qaysi davlat tuzildi?",
 
@@ -43,6 +49,7 @@ export const testQuestions: TestQuestion[] =
 
     {
       id: 2,
+
       type: "matching",
 
       question:
@@ -51,18 +58,21 @@ export const testQuestions: TestQuestion[] =
       matching: [
         {
           left: "Islom Karimov",
+
           right:
             "O‘zbekiston birinchi Prezidenti",
         },
 
         {
           left: "Amir Temur",
+
           right:
             "Buyuk sarkarda va davlat arbobi",
         },
 
         {
           left: "Buxoro amirligi",
+
           right:
             "XIX asrda Markaziy Osiyoda mavjud davlat",
         },
@@ -71,6 +81,7 @@ export const testQuestions: TestQuestion[] =
 
     {
       id: 3,
+
       type: "chronology",
 
       question:
@@ -86,6 +97,7 @@ export const testQuestions: TestQuestion[] =
 
     {
       id: 4,
+
       type: "map",
 
       question:
