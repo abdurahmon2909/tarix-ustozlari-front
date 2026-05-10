@@ -15,7 +15,8 @@ import { motion } from "framer-motion";
 type QuestionType =
   | "mcq"
   | "matching"
-  | "chronology";
+  | "chronology"
+  | "map";
 
 /* =========================
    ACTIVE TYPE
@@ -80,7 +81,12 @@ const chronologyEvents = [
   "Anqara jangi",
   "Amir Temur vafoti",
 ];
-
+const mapRegions = [
+  "Farg‘ona vodiysi",
+  "Samarqand",
+  "Buxoro",
+  "Xorazm",
+];
 export default function TestSessionPage() {
   return (
     <div className="relative pt-2 pb-10">
@@ -740,7 +746,196 @@ export default function TestSessionPage() {
           </div>
         </>
       )}
+{/* =========================
+    MAP QUESTION
+========================= */}
 
+{questionType === "map" && (
+  <>
+    {/* QUESTION */}
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        delay: 0.1,
+      }}
+      className="
+      relative
+      z-10
+      mt-8
+      rounded-[32px]
+      border
+      border-white/10
+      bg-gradient-to-br
+      from-[#132238]
+      to-[#0a1422]
+      p-6
+    "
+    >
+      <p
+        className="
+        text-2xl
+        leading-relaxed
+        font-semibold
+      "
+      >
+        Xaritada Farg‘ona
+        vodiysi joylashgan
+        hududni belgilang.
+      </p>
+    </motion.div>
+
+    {/* MAP */}
+    <motion.div
+      initial={{
+        opacity: 0,
+        scale: 0.95,
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+      }}
+      transition={{
+        delay: 0.15,
+      }}
+      className="
+      relative
+      z-10
+      mt-6
+      overflow-hidden
+      rounded-[32px]
+      border
+      border-white/10
+      bg-gradient-to-br
+      from-[#132238]
+      to-[#0a1422]
+      shadow-2xl
+      shadow-blue-500/10
+    "
+    >
+      {/* FAKE MAP */}
+      <div
+        className="
+        relative
+        h-[420px]
+        bg-gradient-to-br
+        from-[#1d324f]
+        via-[#223a5c]
+        to-[#16253b]
+      "
+      >
+        {/* GRID */}
+        <div
+          className="
+          absolute
+          inset-0
+          opacity-10
+          bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]
+          bg-[size:32px_32px]
+        "
+        />
+
+        {/* REGIONS */}
+        {mapRegions.map(
+          (region, index) => (
+            <motion.button
+              key={index}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className={`
+                absolute
+                px-4
+                py-2
+                rounded-2xl
+                text-sm
+                font-semibold
+                backdrop-blur-xl
+                border
+                transition-all
+
+                ${
+                  region ===
+                  "Farg‘ona vodiysi"
+                    ? `
+                    bg-yellow-500/20
+                    border-yellow-400/40
+                    text-yellow-300
+                  `
+                    : `
+                    bg-white/10
+                    border-white/10
+                    text-white
+                  `
+                }
+              `}
+              style={{
+                top: `${
+                  20 + index * 18
+                }%`,
+                left: `${
+                  15 + index * 20
+                }%`,
+              }}
+            >
+              {region}
+            </motion.button>
+          )
+        )}
+
+        {/* MAP CONTROLS */}
+        <div
+          className="
+          absolute
+          right-4
+          bottom-4
+          flex
+          flex-col
+          gap-3
+        "
+        >
+          <button
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-black/40
+            border
+            border-white/10
+            text-2xl
+            font-bold
+            backdrop-blur-xl
+          "
+          >
+            +
+          </button>
+
+          <button
+            className="
+            w-12
+            h-12
+            rounded-2xl
+            bg-black/40
+            border
+            border-white/10
+            text-2xl
+            font-bold
+            backdrop-blur-xl
+          "
+          >
+            −
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  </>
+)}
       {/* ACTIONS */}
       <motion.div
         initial={{
