@@ -7,9 +7,12 @@
     <list default="true" id="175b8644-08c0-4114-8792-0a45cbb6b6f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/arena/BattleTimer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/arena/BattleTimer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tests/QuestionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/QuestionCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tests/TestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/TestCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tests/TestCardSkeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/TestCardSkeleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/ToastContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/ToastContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/ai/ai.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ai/ai.api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/arena/arena.socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/arena/arena.socket.ts" afterDir="false" />
@@ -22,6 +25,7 @@
       <change beforePath="$PROJECT_DIR$/src/features/leaderboard/leaderboard.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/leaderboard/leaderboard.api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/notifications/notifications.socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/notifications/notifications.socket.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/profile/profile.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/profile.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/search/search.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/search/search.api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/statistics/statistics.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/statistics/statistics.api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/tests/QuestionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/QuestionCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/tests/questions.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/questions.api.ts" afterDir="false" />
