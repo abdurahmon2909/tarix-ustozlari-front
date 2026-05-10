@@ -15,17 +15,28 @@ export default function LoginPage() {
 
       tg?.ready();
 
-      const user =
+      console.log("TG:", tg);
+
+      console.log(
+        "INIT DATA:",
+        tg?.initData
+      );
+
+      console.log(
+        "INIT UNSAFE:",
+        tg?.initDataUnsafe
+      );
+
+      let user =
         tg?.initDataUnsafe?.user;
 
-      console.log("TG:", tg);
-      console.log("USER:", user);
-
+      // DESKTOP FALLBACK
       if (!user) {
-        alert(
-          "Telegram user topilmadi. Mini App ichida oching."
-        );
-        return;
+        user = {
+          id: 999999,
+          username: "demo_user",
+          first_name: "Demo",
+        };
       }
 
       const response = await fetch(
@@ -47,6 +58,8 @@ export default function LoginPage() {
 
       const data =
         await response.json();
+
+      console.log("LOGIN:", data);
 
       if (!response.ok) {
         alert(
