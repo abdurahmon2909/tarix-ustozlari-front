@@ -2,39 +2,25 @@ import {
   Crown,
   Sparkles,
   Trophy,
-  Send,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
 export default function LoginPage() {
   async function handleLogin() {
-    console.log("telegram login");
+    console.log("Telegram auth");
   }
 
   return (
-    <div
-      className="
-      relative
-      min-h-screen
-      overflow-hidden
-      bg-[#050B16]
-      text-white
-      flex
-      flex-col
-      justify-between
-      px-6
-      py-8
-    "
-    >
-      {/* BACKGROUND GLOWS */}
+    <div className="relative min-h-screen overflow-hidden bg-[#071120] flex flex-col justify-between px-6 py-10">
+      {/* GLOWS */}
       <div
         className="
         absolute
-        top-[-120px]
-        left-[-80px]
-        w-[320px]
-        h-[320px]
+        top-0
+        left-0
+        w-72
+        h-72
         rounded-full
         bg-yellow-500/20
         blur-[120px]
@@ -44,17 +30,17 @@ export default function LoginPage() {
       <div
         className="
         absolute
-        bottom-[-120px]
-        right-[-80px]
-        w-[320px]
-        h-[320px]
+        bottom-0
+        right-0
+        w-72
+        h-72
         rounded-full
         bg-blue-500/20
         blur-[120px]
       "
       />
 
-      {/* CONTENT */}
+      {/* TOP */}
       <div className="relative z-10">
         {/* LOGO */}
         <motion.div
@@ -66,39 +52,27 @@ export default function LoginPage() {
             opacity: 1,
             scale: 1,
           }}
-          transition={{
-            duration: 0.4,
-          }}
           className="
+          w-24
+          h-24
+          rounded-[32px]
+          bg-gradient-to-br
+          from-yellow-400
+          to-yellow-600
           flex
+          items-center
           justify-center
-          mt-10
+          shadow-2xl
+          shadow-yellow-500/30
         "
         >
-          <div
-            className="
-            w-36
-            h-36
-            rounded-[40px]
-            bg-gradient-to-br
-            from-yellow-400
-            to-yellow-600
-            flex
-            items-center
-            justify-center
-            shadow-2xl
-            shadow-yellow-500/30
-          "
-          >
-            <Crown
-              size={70}
-              strokeWidth={2.3}
-              className="text-black"
-            />
-          </div>
+          <Crown
+            size={42}
+            className="text-black"
+          />
         </motion.div>
 
-        {/* PREMIUM BADGE */}
+        {/* TITLE */}
         <motion.div
           initial={{
             opacity: 0,
@@ -111,69 +85,18 @@ export default function LoginPage() {
           transition={{
             delay: 0.1,
           }}
-          className="
-          flex
-          justify-center
-          mt-10
-        "
+          className="mt-10"
         >
-          <div
-            className="
-            flex
-            items-center
-            gap-3
-            px-6
-            py-3
-            rounded-full
-            border
-            border-yellow-500/30
-            bg-yellow-500/10
-            backdrop-blur-xl
-          "
-          >
-            <Crown
-              size={22}
-              className="
-              text-yellow-400
-            "
-            />
+          <p className="text-yellow-400">
+            Premium tarix platformasi
+          </p>
 
-            <span
-              className="
-              text-yellow-300
-              text-xl
-              font-semibold
-            "
-            >
-              Premium tarix platformasi
-            </span>
-          </div>
-        </motion.div>
-
-        {/* TITLE */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            delay: 0.15,
-          }}
-          className="
-          text-center
-          mt-10
-        "
-        >
           <h1
             className="
-            text-[72px]
-            leading-[0.95]
-            font-black
-            tracking-[-3px]
+            text-6xl
+            font-bold
+            mt-4
+            leading-tight
           "
           >
             Tarix
@@ -183,62 +106,42 @@ export default function LoginPage() {
 
           <p
             className="
-            mt-8
-            text-[30px]
+            text-gray-400
+            text-lg
             leading-relaxed
-            text-gray-300
+            mt-6
           "
           >
             AI yordamida tarixni
-            o‘rganing, arena
-            janglarida qatnashing
-            va reytingda yuqoriga
-            ko‘tariling.
+            o‘rganing, arena janglarida
+            qatnashing va reytingda
+            yuqoriga ko‘tariling.
           </p>
         </motion.div>
 
         {/* FEATURES */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            delay: 0.2,
-          }}
-          className="
-          mt-14
-          space-y-6
-        "
-        >
-          {/* ITEM */}
+        <div className="mt-10 space-y-4">
           <div
             className="
             flex
             items-center
-            gap-5
+            gap-4
           "
           >
             <div
               className="
-              w-20
-              h-20
-              rounded-[28px]
+              w-14
+              h-14
+              rounded-2xl
               bg-white/5
               border
               border-white/10
-              backdrop-blur-xl
               flex
               items-center
               justify-center
             "
             >
               <Sparkles
-                size={34}
                 className="
                 text-cyan-400
               "
@@ -248,49 +151,40 @@ export default function LoginPage() {
             <div>
               <h3
                 className="
-                text-4xl
+                text-xl
                 font-bold
               "
               >
                 AI Testlar
               </h3>
 
-              <p
-                className="
-                text-gray-400
-                text-2xl
-                mt-1
-              "
-              >
+              <p className="text-gray-400">
                 Smart recommendation system
               </p>
             </div>
           </div>
 
-          {/* ITEM */}
           <div
             className="
             flex
             items-center
-            gap-5
+            gap-4
           "
           >
             <div
               className="
-              w-20
-              h-20
-              rounded-[28px]
+              w-14
+              h-14
+              rounded-2xl
               bg-white/5
               border
               border-white/10
-              backdrop-blur-xl
               flex
               items-center
               justify-center
             "
             >
               <Trophy
-                size={34}
                 className="
                 text-yellow-400
               "
@@ -300,28 +194,22 @@ export default function LoginPage() {
             <div>
               <h3
                 className="
-                text-4xl
+                text-xl
                 font-bold
               "
               >
                 Reyting tizimi
               </h3>
 
-              <p
-                className="
-                text-gray-400
-                text-2xl
-                mt-1
-              "
-              >
+              <p className="text-gray-400">
                 XP va leaderboard
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* LOGIN BUTTON */}
+      {/* BUTTON */}
       <motion.div
         initial={{
           opacity: 0,
@@ -332,36 +220,29 @@ export default function LoginPage() {
           y: 0,
         }}
         transition={{
-          delay: 0.3,
+          delay: 0.2,
         }}
         className="
         relative
         z-10
-        mt-12
       "
       >
         <button
           onClick={handleLogin}
           className="
           w-full
-          h-[88px]
-          rounded-[32px]
+          py-5
+          rounded-3xl
           bg-gradient-to-r
           from-yellow-400
           to-yellow-600
           text-black
-          text-[34px]
+          text-xl
           font-bold
           shadow-2xl
           shadow-yellow-500/30
-          flex
-          items-center
-          justify-center
-          gap-4
         "
         >
-          <Send size={28} />
-
           Telegram orqali kirish
         </button>
 
@@ -369,10 +250,7 @@ export default function LoginPage() {
           className="
           text-center
           text-gray-500
-          text-xl
-          leading-relaxed
-          mt-8
-          px-4
+          mt-5
         "
         >
           Davom etish orqali siz
