@@ -409,89 +409,251 @@ export default function HomePage() {
         </button>
       </div>
 
-      {/* DAILY CHALLENGE */}
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          delay: 0.1,
-        }}
+{/* DAILY CHALLENGE */}
+<motion.div
+  initial={{
+    opacity: 0,
+    y: 20,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    delay: 0.1,
+  }}
+  className="
+  relative
+  z-10
+  overflow-hidden
+  rounded-[32px]
+  border
+  border-yellow-500/20
+  bg-gradient-to-br
+  from-[#13294a]
+  via-[#0b1830]
+  to-[#08111d]
+  p-5
+  shadow-2xl
+  shadow-blue-500/10
+"
+>
+  {/* GLOW */}
+  <div
+    className="
+    absolute
+    -right-10
+    top-0
+    w-56
+    h-56
+    rounded-full
+    bg-yellow-500/10
+    blur-[100px]
+  "
+  />
+
+  <div
+    className="
+    relative
+    z-10
+    flex
+    items-start
+    justify-between
+    gap-4
+  "
+  >
+    {/* LEFT */}
+    <div className="flex-1">
+      {/* TOP */}
+      <div
         className="
-        relative
-        z-10
-        rounded-3xl
-        p-5
-        bg-gradient-to-br
-        from-[#10233c]
-        to-[#08111d]
-        border
-        border-white/10
-        shadow-xl
-        shadow-blue-500/10
+        flex
+        items-center
+        gap-3
       "
       >
         <div
           className="
+          w-14
+          h-14
+          rounded-2xl
+          bg-orange-500/20
+          border
+          border-orange-400/20
           flex
           items-center
-          gap-3
+          justify-center
         "
         >
-          <div
+          <Flame
+            size={26}
             className="
-            w-14
-            h-14
-            rounded-2xl
-            bg-orange-500/20
-            flex
-            items-center
-            justify-center
+            text-orange-400
           "
-          >
-            <Flame
-              className="
-              text-orange-400
-            "
-            />
-          </div>
-
-          <div>
-            <p className="text-gray-400">
-              Daily Challenge
-            </p>
-
-            <h2
-              className="
-              text-2xl
-              font-bold
-            "
-            >
-              Jadidlar davri
-            </h2>
-          </div>
+          />
         </div>
 
-        <button
-          className="
-          mt-5
-          w-full
-          py-4
-          rounded-2xl
-          bg-yellow-400
-          text-black
-          font-bold
-          text-lg
-        "
-        >
-          Boshlash
-        </button>
-      </motion.div>
+        <div>
+          <p
+            className="
+            text-xs
+            uppercase
+            tracking-widest
+            text-yellow-300
+          "
+          >
+            Bugungi Challenge
+          </p>
+
+          <h2
+            className="
+            text-3xl
+            font-bold
+            mt-1
+          "
+          >
+            Jadidlar davri
+          </h2>
+        </div>
+      </div>
+
+      {/* INFO */}
+      <div
+        className="
+        mt-5
+        flex
+        items-center
+        gap-3
+        text-sm
+        text-gray-300
+      "
+      >
+        <span>10 ta savol</span>
+
+        <span>•</span>
+
+        <span>15 XP</span>
+
+        <span>•</span>
+
+        <span>10 Sharaf</span>
+      </div>
+
+      {/* BUTTON */}
+      <button
+        className="
+        mt-6
+        px-8
+        py-4
+        rounded-2xl
+        bg-gradient-to-r
+        from-yellow-400
+        to-yellow-600
+        text-black
+        font-bold
+        text-lg
+        shadow-xl
+        shadow-yellow-500/20
+      "
+      >
+        Boshlash
+      </button>
+    </div>
+
+    {/* RIGHT */}
+    <div
+      className="
+      relative
+      hidden
+      sm:flex
+      items-center
+      justify-center
+    "
+    >
+      <div
+        className="
+        absolute
+        w-36
+        h-36
+        rounded-full
+        bg-yellow-500/20
+        blur-[60px]
+      "
+      />
+
+      <div className="relative text-[120px]">
+        🪙
+      </div>
+    </div>
+  </div>
+
+  {/* TIMER */}
+  <div
+    className="
+    absolute
+    top-4
+    right-4
+    px-4
+    py-2
+    rounded-full
+    bg-black/40
+    backdrop-blur-xl
+    border
+    border-white/10
+    text-sm
+    font-medium
+  "
+  >
+    ⏱ 12:45:30
+  </div>
+
+  {/* DOTS */}
+  <div
+    className="
+    mt-6
+    flex
+    items-center
+    justify-center
+    gap-2
+  "
+  >
+    <div
+      className="
+      w-2.5
+      h-2.5
+      rounded-full
+      bg-yellow-400
+    "
+    />
+
+    <div
+      className="
+      w-2.5
+      h-2.5
+      rounded-full
+      bg-white/20
+    "
+    />
+
+    <div
+      className="
+      w-2.5
+      h-2.5
+      rounded-full
+      bg-white/20
+    "
+    />
+
+    <div
+      className="
+      w-2.5
+      h-2.5
+      rounded-full
+      bg-white/20
+    "
+    />
+  </div>
+</motion.div>
 
       {/* STATS */}
       <div
