@@ -1,5 +1,4 @@
 import {
-  BrowserRouter,
   Routes,
   Route,
   Navigate,
@@ -39,114 +38,119 @@ function ProtectedRoute({
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* LOGIN */}
-        <Route
-          path="/login"
-          element={<LoginPage />}
-        />
+    <Routes>
+      {/* LOGIN */}
+      <Route
+        path="/login"
+        element={<LoginPage />}
+      />
 
-        {/* APP */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <HomePage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* HOME */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <HomePage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/tests"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <TestsPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* TESTS */}
+      <Route
+        path="/tests"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <TestsPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/books"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <BooksPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* BOOKS */}
+      <Route
+        path="/books"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <BooksPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/arena"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <ArenaPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* ARENA */}
+      <Route
+        path="/arena"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <ArenaPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <ProfilePage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* PROFILE */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <ProfilePage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <SettingsPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* SETTINGS */}
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <SettingsPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/session"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <TestSessionPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* SESSION */}
+      <Route
+        path="/session"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <TestSessionPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/result"
-          element={
-            <ProtectedRoute>
-              <AppShell>
-                <TestResultPage />
-              </AppShell>
-            </ProtectedRoute>
-          }
-        />
+      {/* RESULT */}
+      <Route
+        path="/result"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <TestResultPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
 
-        {/* FALLBACK */}
-        <Route
-          path="*"
-          element={
-            <Navigate
-              to="/"
-              replace
-            />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      {/* FALLBACK */}
+      <Route
+        path="*"
+        element={
+          <Navigate
+            to="/login"
+            replace
+          />
+        }
+      />
+    </Routes>
   );
 }
