@@ -49,10 +49,25 @@ export default function LoginPage() {
       alert("Login success");
 
       navigate("/");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
 
-      alert("Login error");
+      console.log(
+        "ERROR RESPONSE:",
+        error?.response?.data
+      );
+
+      console.log(
+        "ERROR MESSAGE:",
+        error?.message
+      );
+
+      alert(
+        JSON.stringify(
+          error?.response?.data ||
+            error?.message
+        )
+      );
     }
   }
 
