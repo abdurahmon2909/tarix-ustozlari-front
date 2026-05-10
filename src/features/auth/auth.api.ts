@@ -5,7 +5,7 @@ export async function telegramLogin(
   username: string
 ) {
   const response = await api.post(
-    "/auth/telegram",
+    "/api/v1/auth/telegram",
     {
       telegram_id,
       username,
