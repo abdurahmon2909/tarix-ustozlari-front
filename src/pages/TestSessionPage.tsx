@@ -7,11 +7,11 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
 
-/* =========================
-   QUESTION TYPE
-========================= */
+import {
+  useMemo,
+  useState,
+} from "react";
 
 type QuestionType =
   | "mcq"
@@ -19,14 +19,12 @@ type QuestionType =
   | "chronology"
   | "map";
 
-/* =========================
-   ACTIVE TYPE
-========================= */
-
-
-/* =========================
-   MCQ DATA
-========================= */
+const questions: QuestionType[] = [
+  "mcq",
+  "matching",
+  "chronology",
+  "map",
+];
 
 const mcqAnswers = [
   "Sovet Ittifoqi",
@@ -35,12 +33,7 @@ const mcqAnswers = [
   "Sotsialistik davlat",
 ];
 
-const selectedAnswer = 2;
 const correctAnswer = 2;
-
-/* =========================
-   MATCHING DATA
-========================= */
 
 const matchingQuestions = [
   {
@@ -65,35 +58,32 @@ const matchingQuestions = [
   },
 ];
 
-/* =========================
-   CHRONOLOGY DATA
-========================= */
-
 const chronologyEvents = [
   "Amir Temur tavalludi",
   "Temuriylar davlati tashkil topdi",
   "Anqara jangi",
   "Amir Temur vafoti",
 ];
+
 const mapRegions = [
   "Farg‘ona vodiysi",
   "Samarqand",
   "Buxoro",
   "Xorazm",
 ];
-const questions: QuestionType[] = [
-  "mcq",
-  "matching",
-  "chronology",
-  "map",
-];
 
 export default function TestSessionPage() {
-
   const [
     currentQuestion,
     setCurrentQuestion,
   ] = useState(0);
+
+  const [
+    selectedMcq,
+    setSelectedMcq,
+  ] = useState<number | null>(
+    null
+  );
 
   const questionType = useMemo(
     () =>
@@ -104,22 +94,17 @@ export default function TestSessionPage() {
     [currentQuestion]
   );
 
-  return (
-const [currentQuestion, setCurrentQuestion] =
-  useState(0);
+  const nextQuestion = () => {
+    setCurrentQuestion(
+      (prev) => prev + 1
+    );
 
-const questionType = useMemo(
-  () =>
-    questions[
-      currentQuestion %
-        questions.length
-    ],
-  [currentQuestion]
-);
-export default function TestSessionPage() {
+    setSelectedMcq(null);
+  };
+
   return (
     <div className="relative pt-2 pb-10">
-      {/* BACKGROUND */}
+      {/* BG */}
       <div
         className="
         absolute
@@ -151,7 +136,6 @@ export default function TestSessionPage() {
         justify-between
       "
       >
-        {/* BACK */}
         <button
           className="
           w-12
@@ -168,7 +152,6 @@ export default function TestSessionPage() {
           <ChevronLeft size={22} />
         </button>
 
-        {/* TITLE */}
         <div className="text-center">
           <p
             className="
@@ -187,11 +170,12 @@ export default function TestSessionPage() {
             mt-1
           "
           >
-            {currentQuestion + 1} / 30
+            {currentQuestion + 1}
+            {" / "}
+            30
           </h2>
         </div>
 
-        {/* TIMER */}
         <div
           className="
           px-4
@@ -224,15 +208,7 @@ export default function TestSessionPage() {
       </motion.div>
 
       {/* PROGRESS */}
-      <motion.div
-        initial={{
-          opacity: 0,
-          scaleX: 0.8,
-        }}
-        animate={{
-          opacity: 1,
-          scaleX: 1,
-        }}
+      <div
         className="
         relative
         z-10
@@ -251,35 +227,27 @@ export default function TestSessionPage() {
           <div
             className="
             h-full
-            w-full
             rounded-full
             bg-gradient-to-r
             from-yellow-400
             to-yellow-600
           "
+            style={{
+              width: `${
+                ((currentQuestion +
+                  1) /
+                  30) *
+                100
+              }%`,
+            }}
           />
         </div>
-      </motion.div>
+      </div>
 
-      {/* =========================
-          MCQ
-      ========================= */}
-
+      {/* MCQ */}
       {questionType === "mcq" && (
         <>
-          {/* QUESTION */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+          <div
             className="
             relative
             z-10
@@ -291,8 +259,6 @@ export default function TestSessionPage() {
             from-[#132238]
             to-[#0a1422]
             p-6
-            shadow-2xl
-            shadow-blue-500/10
           "
           >
             <p
@@ -307,9 +273,8 @@ export default function TestSessionPage() {
               Rossiyada qaysi
               davlat tuzildi?
             </p>
-          </motion.div>
+          </div>
 
-          {/* ANSWERS */}
           <div
             className="
             relative
@@ -322,32 +287,33 @@ export default function TestSessionPage() {
               (answer, index) => (
                 <motion.button
                   key={index}
+                  onClick={() =>
+                    setSelectedMcq(
+                      index
+                    )
+                  }
                   whileTap={{
                     scale: 0.98,
                   }}
-                  whileHover={{
-                    scale: 1.01,
-                  }}
                   className={`
-                    relative
-                    overflow-hidden
                     w-full
                     rounded-[28px]
                     border
                     p-5
                     text-left
                     transition-all
-                    duration-300
 
                     ${
+                      selectedMcq !==
+                        null &&
                       index ===
-                      correctAnswer
+                        correctAnswer
                         ? `
                         border-green-500/40
                         bg-green-500/10
                       `
                         : index ===
-                          selectedAnswer
+                          selectedMcq
                         ? `
                         border-red-500/40
                         bg-red-500/10
@@ -367,7 +333,6 @@ export default function TestSessionPage() {
                     gap-4
                   "
                   >
-                    {/* LEFT */}
                     <div
                       className="
                       flex
@@ -375,7 +340,6 @@ export default function TestSessionPage() {
                       gap-4
                     "
                     >
-                      {/* RADIO */}
                       <div
                         className={`
                         w-7
@@ -387,14 +351,16 @@ export default function TestSessionPage() {
                         justify-center
 
                         ${
+                          selectedMcq !==
+                            null &&
                           index ===
-                          correctAnswer
+                            correctAnswer
                             ? `
                             border-green-400
                             bg-green-400
                           `
                             : index ===
-                              selectedAnswer
+                              selectedMcq
                             ? `
                             border-red-400
                             bg-red-400
@@ -405,18 +371,20 @@ export default function TestSessionPage() {
                         }
                       `}
                       >
-                        {index ===
-                          correctAnswer && (
-                          <Check
-                            size={14}
-                            className="
-                            text-black
-                          "
-                          />
-                        )}
+                        {selectedMcq !==
+                          null &&
+                          index ===
+                            correctAnswer && (
+                            <Check
+                              size={14}
+                              className="
+                              text-black
+                            "
+                            />
+                          )}
 
                         {index ===
-                          selectedAnswer &&
+                          selectedMcq &&
                           index !==
                             correctAnswer && (
                             <X
@@ -428,12 +396,10 @@ export default function TestSessionPage() {
                           )}
                       </div>
 
-                      {/* TEXT */}
                       <span
                         className="
                         text-lg
                         font-medium
-                        leading-relaxed
                       "
                       >
                         {String.fromCharCode(
@@ -443,24 +409,6 @@ export default function TestSessionPage() {
                         {answer}
                       </span>
                     </div>
-
-                    {/* STATUS */}
-                    {index ===
-                      correctAnswer && (
-                      <div
-                        className="
-                        px-3
-                        py-1.5
-                        rounded-full
-                        bg-green-500/20
-                        text-green-400
-                        text-xs
-                        font-semibold
-                      "
-                      >
-                        To‘g‘ri
-                      </div>
-                    )}
                   </div>
                 </motion.button>
               )
@@ -469,26 +417,11 @@ export default function TestSessionPage() {
         </>
       )}
 
-      {/* =========================
-          MATCHING
-      ========================= */}
-
+      {/* MATCHING */}
       {questionType ===
         "matching" && (
         <>
-          {/* QUESTION */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+          <div
             className="
             relative
             z-10
@@ -505,17 +438,13 @@ export default function TestSessionPage() {
             <p
               className="
               text-2xl
-              leading-relaxed
               font-semibold
             "
             >
-              Quyidagi tarixiy
-              atamalarni
-              moslashtiring.
+              Moslashtiring
             </p>
-          </motion.div>
+          </div>
 
-          {/* MATCHING */}
           <div
             className="
             relative
@@ -526,21 +455,8 @@ export default function TestSessionPage() {
           >
             {matchingQuestions.map(
               (item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay:
-                      0.1 +
-                      index * 0.05,
-                  }}
                   className="
                   rounded-[28px]
                   border
@@ -549,21 +465,14 @@ export default function TestSessionPage() {
                   p-4
                 "
                 >
-                  <div
-                    className="
-                    flex
-                    flex-col
-                    gap-4
-                  "
-                  >
+                  <div className="space-y-4">
                     <div
                       className="
                       rounded-2xl
-                      bg-white/[0.03]
                       border
                       border-white/10
-                      px-4
-                      py-4
+                      bg-white/[0.03]
+                      p-4
                       text-lg
                       font-semibold
                     "
@@ -581,13 +490,8 @@ export default function TestSessionPage() {
                       px-4
                       py-4
                       text-white
-                      outline-none
                     "
                     >
-                      <option>
-                        Tanlang
-                      </option>
-
                       {matchingQuestions.map(
                         (
                           option,
@@ -606,33 +510,18 @@ export default function TestSessionPage() {
                       )}
                     </select>
                   </div>
-                </motion.div>
+                </div>
               )
             )}
           </div>
         </>
       )}
 
-      {/* =========================
-          CHRONOLOGY
-      ========================= */}
-
+      {/* CHRONOLOGY */}
       {questionType ===
         "chronology" && (
         <>
-          {/* QUESTION */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+          <div
             className="
             relative
             z-10
@@ -649,17 +538,14 @@ export default function TestSessionPage() {
             <p
               className="
               text-2xl
-              leading-relaxed
               font-semibold
             "
             >
-              Voqealarni
-              ketma-ketlikda
-              joylashtiring.
+              Ketma-ketlikda
+              joylashtiring
             </p>
-          </motion.div>
+          </div>
 
-          {/* CHRONOLOGY */}
           <div
             className="
             relative
@@ -670,11 +556,8 @@ export default function TestSessionPage() {
           >
             {chronologyEvents.map(
               (event, index) => (
-                <motion.div
+                <div
                   key={index}
-                  whileTap={{
-                    scale: 0.98,
-                  }}
                   className="
                   rounded-[28px]
                   border
@@ -690,7 +573,6 @@ export default function TestSessionPage() {
                     gap-4
                   "
                   >
-                    {/* NUMBER */}
                     <div
                       className="
                       min-w-[52px]
@@ -710,274 +592,110 @@ export default function TestSessionPage() {
                       {index + 1}
                     </div>
 
-                    {/* TEXT */}
-                    <div className="flex-1">
-                      <p
-                        className="
-                        text-lg
-                        leading-relaxed
-                        font-semibold
-                      "
-                      >
-                        {event}
-                      </p>
-                    </div>
-
-                    {/* DRAG */}
-                    <div
+                    <p
                       className="
-                      flex
-                      flex-col
-                      gap-1
-                      opacity-40
+                      text-lg
+                      font-semibold
                     "
                     >
-                      <div
-                        className="
-                        w-1.5
-                        h-1.5
-                        rounded-full
-                        bg-white
-                      "
-                      />
-
-                      <div
-                        className="
-                        w-1.5
-                        h-1.5
-                        rounded-full
-                        bg-white
-                      "
-                      />
-
-                      <div
-                        className="
-                        w-1.5
-                        h-1.5
-                        rounded-full
-                        bg-white
-                      "
-                      />
-
-                      <div
-                        className="
-                        w-1.5
-                        h-1.5
-                        rounded-full
-                        bg-white
-                      "
-                      />
-                    </div>
+                      {event}
+                    </p>
                   </div>
-                </motion.div>
+                </div>
               )
             )}
           </div>
         </>
       )}
-{/* =========================
-    MAP QUESTION
-========================= */}
 
-{questionType === "map" && (
-  <>
-    {/* QUESTION */}
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 20,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        delay: 0.1,
-      }}
-      className="
-      relative
-      z-10
-      mt-8
-      rounded-[32px]
-      border
-      border-white/10
-      bg-gradient-to-br
-      from-[#132238]
-      to-[#0a1422]
-      p-6
-    "
-    >
-      <p
-        className="
-        text-2xl
-        leading-relaxed
-        font-semibold
-      "
-      >
-        Xaritada Farg‘ona
-        vodiysi joylashgan
-        hududni belgilang.
-      </p>
-    </motion.div>
-
-    {/* MAP */}
-    <motion.div
-      initial={{
-        opacity: 0,
-        scale: 0.95,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-      }}
-      transition={{
-        delay: 0.15,
-      }}
-      className="
-      relative
-      z-10
-      mt-6
-      overflow-hidden
-      rounded-[32px]
-      border
-      border-white/10
-      bg-gradient-to-br
-      from-[#132238]
-      to-[#0a1422]
-      shadow-2xl
-      shadow-blue-500/10
-    "
-    >
-      {/* FAKE MAP */}
-      <div
-        className="
-        relative
-        h-[420px]
-        bg-gradient-to-br
-        from-[#1d324f]
-        via-[#223a5c]
-        to-[#16253b]
-      "
-      >
-        {/* GRID */}
-        <div
-          className="
-          absolute
-          inset-0
-          opacity-10
-          bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]
-          bg-[size:32px_32px]
-        "
-        />
-
-        {/* REGIONS */}
-        {mapRegions.map(
-          (region, index) => (
-            <motion.button
-              key={index}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className={`
-                absolute
-                px-4
-                py-2
-                rounded-2xl
-                text-sm
-                font-semibold
-                backdrop-blur-xl
-                border
-                transition-all
-
-                ${
-                  region ===
-                  "Farg‘ona vodiysi"
-                    ? `
-                    bg-yellow-500/20
-                    border-yellow-400/40
-                    text-yellow-300
-                  `
-                    : `
-                    bg-white/10
-                    border-white/10
-                    text-white
-                  `
-                }
-              `}
-              style={{
-                top: `${
-                  20 + index * 18
-                }%`,
-                left: `${
-                  15 + index * 20
-                }%`,
-              }}
+      {/* MAP */}
+      {questionType === "map" && (
+        <>
+          <div
+            className="
+            relative
+            z-10
+            mt-8
+            rounded-[32px]
+            border
+            border-white/10
+            bg-gradient-to-br
+            from-[#132238]
+            to-[#0a1422]
+            p-6
+          "
+          >
+            <p
+              className="
+              text-2xl
+              font-semibold
+            "
             >
-              {region}
-            </motion.button>
-          )
-        )}
+              Xaritadan
+              Farg‘ona vodiysini
+              belgilang
+            </p>
+          </div>
 
-        {/* MAP CONTROLS */}
-        <div
-          className="
-          absolute
-          right-4
-          bottom-4
-          flex
-          flex-col
-          gap-3
-        "
-        >
-          <button
+          <div
             className="
-            w-12
-            h-12
-            rounded-2xl
-            bg-black/40
+            relative
+            z-10
+            mt-6
+            overflow-hidden
+            rounded-[32px]
             border
             border-white/10
-            text-2xl
-            font-bold
-            backdrop-blur-xl
+            bg-gradient-to-br
+            from-[#132238]
+            to-[#0a1422]
           "
           >
-            +
-          </button>
+            <div
+              className="
+              relative
+              h-[420px]
+            "
+            >
+              {mapRegions.map(
+                (
+                  region,
+                  index
+                ) => (
+                  <button
+                    key={index}
+                    className="
+                    absolute
+                    px-4
+                    py-2
+                    rounded-2xl
+                    bg-white/10
+                    border
+                    border-white/10
+                    backdrop-blur-xl
+                  "
+                    style={{
+                      top: `${
+                        20 +
+                        index * 18
+                      }%`,
+                      left: `${
+                        15 +
+                        index * 20
+                      }%`,
+                    }}
+                  >
+                    {region}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+        </>
+      )}
 
-          <button
-            className="
-            w-12
-            h-12
-            rounded-2xl
-            bg-black/40
-            border
-            border-white/10
-            text-2xl
-            font-bold
-            backdrop-blur-xl
-          "
-          >
-            −
-          </button>
-        </div>
-      </div>
-    </motion.div>
-  </>
-)}
       {/* ACTIONS */}
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          delay: 0.2,
-        }}
         className="
         relative
         z-10
@@ -987,7 +705,6 @@ export default function TestSessionPage() {
         gap-4
       "
       >
-        {/* FLAG */}
         <button
           className="
           h-16
@@ -1007,8 +724,13 @@ export default function TestSessionPage() {
           Belgilash
         </button>
 
-        {/* NEXT */}
         <button
+          onClick={nextQuestion}
+          disabled={
+            questionType ===
+              "mcq" &&
+            selectedMcq === null
+          }
           className="
           h-16
           rounded-2xl
@@ -1020,6 +742,8 @@ export default function TestSessionPage() {
           text-lg
           shadow-xl
           shadow-yellow-500/20
+          disabled:opacity-40
+          disabled:cursor-not-allowed
         "
         >
           Keyingi →
