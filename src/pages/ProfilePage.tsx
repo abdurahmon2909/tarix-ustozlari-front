@@ -2,44 +2,57 @@ import {
   Flame,
   Trophy,
   Star,
-  BookOpen,
-  Crown,
   Medal,
+  ChevronRight,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
+const achievements = [
+  {
+    title:
+      "10 ta test yakunlandi",
+    icon: Trophy,
+  },
+
+  {
+    title:
+      "3 kunlik streak",
+    icon: Flame,
+  },
+
+  {
+    title:
+      "TOP 20 talik",
+    icon: Medal,
+  },
+
+  {
+    title:
+      "500 XP yig‘ildi",
+    icon: Star,
+  },
+];
+
 export default function ProfilePage() {
   return (
-    <div className="relative pt-6 space-y-6 overflow-hidden">
-      {/* GLOWS */}
+    <div className="relative pb-10">
+      {/* BG */}
       <div
         className="
         absolute
         top-0
-        left-0
-        w-72
-        h-72
+        left-1/2
+        -translate-x-1/2
+        w-80
+        h-80
         rounded-full
-        bg-blue-500/20
+        bg-yellow-500/10
         blur-[120px]
       "
       />
 
-      <div
-        className="
-        absolute
-        top-40
-        right-0
-        w-72
-        h-72
-        rounded-full
-        bg-yellow-500/20
-        blur-[120px]
-      "
-      />
-
-      {/* PROFILE CARD */}
+      {/* HEADER */}
       <motion.div
         initial={{
           opacity: 0,
@@ -52,447 +65,377 @@ export default function ProfilePage() {
         className="
         relative
         z-10
-        rounded-[32px]
-        p-6
-        bg-gradient-to-br
-        from-[#132238]
-        to-[#08111d]
-        border
-        border-white/10
-        shadow-2xl
-        shadow-blue-500/10
       "
       >
+        {/* USER CARD */}
         <div
           className="
-          flex
-          flex-col
-          items-center
-          text-center
+          rounded-[32px]
+          border
+          border-white/10
+          bg-gradient-to-br
+          from-[#132238]
+          to-[#0a1422]
+          p-6
+          shadow-2xl
+          shadow-yellow-500/10
         "
         >
-          <div
-            className="
-            w-28
-            h-28
-            rounded-full
-            bg-gradient-to-br
-            from-yellow-400
-            to-yellow-600
-            flex
-            items-center
-            justify-center
-            text-4xl
-            font-bold
-            text-black
-            shadow-2xl
-            shadow-yellow-500/30
-          "
-          >
-            A
-          </div>
-
-          <h1
-            className="
-            text-3xl
-            font-bold
-            mt-5
-          "
-          >
-            Abdurahmon
-          </h1>
-
-          <p
-            className="
-            text-gray-400
-            mt-2
-          "
-          >
-            Professional tarixchi
-          </p>
-
+          {/* TOP */}
           <div
             className="
             flex
             items-center
-            gap-2
-            mt-4
-            px-4
-            py-2
-            rounded-2xl
-            bg-yellow-500/10
-            border
-            border-yellow-500/20
+            gap-4
           "
           >
-            <Crown
-              size={18}
-              className="
-              text-yellow-400
-            "
-            />
-
-            <span className="text-yellow-300">
-              Premium foydalanuvchi
-            </span>
-          </div>
-        </div>
-
-        {/* XP */}
-        <div className="mt-8">
-          <div
-            className="
-            flex
-            items-center
-            justify-between
-          "
-          >
-            <p className="text-gray-400">
-              Level 12
-            </p>
-
-            <p className="text-yellow-400">
-              1840 / 2500 XP
-            </p>
-          </div>
-
-          <div
-            className="
-            w-full
-            h-3
-            rounded-full
-            bg-white/10
-            overflow-hidden
-            mt-3
-          "
-          >
+            {/* AVATAR */}
             <div
               className="
-              h-full
-              w-[74%]
-              rounded-full
-              bg-gradient-to-r
+              w-20
+              h-20
+              rounded-3xl
+              bg-gradient-to-br
               from-yellow-400
               to-yellow-600
+              flex
+              items-center
+              justify-center
+              text-black
+              text-3xl
+              font-black
+              shadow-xl
+              shadow-yellow-500/20
             "
-            />
+            >
+              A
+            </div>
+
+            {/* INFO */}
+            <div className="flex-1">
+              <h1
+                className="
+                text-2xl
+                font-black
+              "
+              >
+                Abdurahmon
+              </h1>
+
+              <p
+                className="
+                mt-1
+                text-gray-400
+              "
+              >
+                Premium tarixchi
+              </p>
+
+              {/* RANK */}
+              <div
+                className="
+                mt-3
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-yellow-500/10
+                px-4
+                py-2
+                text-yellow-300
+                text-sm
+                font-semibold
+              "
+              >
+                <Trophy size={16} />
+
+                TOP 12%
+              </div>
+            </div>
+          </div>
+
+          {/* XP */}
+          <div className="mt-8">
+            <div
+              className="
+              flex
+              items-center
+              justify-between
+              mb-3
+            "
+            >
+              <p
+                className="
+                text-sm
+                text-gray-400
+              "
+              >
+                LEVEL 7
+              </p>
+
+              <p
+                className="
+                text-sm
+                text-yellow-300
+              "
+              >
+                720 / 1000 XP
+              </p>
+            </div>
+
+            <div
+              className="
+              w-full
+              h-4
+              rounded-full
+              bg-white/10
+              overflow-hidden
+            "
+            >
+              <div
+                className="
+                h-full
+                w-[72%]
+                rounded-full
+                bg-gradient-to-r
+                from-yellow-400
+                to-yellow-600
+              "
+              />
+            </div>
           </div>
         </div>
       </motion.div>
 
       {/* STATS */}
-      <div
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.1,
+        }}
         className="
         relative
         z-10
+        mt-6
         grid
         grid-cols-2
         gap-4
       "
       >
+        {/* TESTS */}
         <div
           className="
-          rounded-3xl
-          p-5
-          bg-white/5
+          rounded-[28px]
           border
           border-white/10
+          bg-white/[0.03]
+          p-5
         "
         >
-          <div
+          <p
             className="
-            flex
-            items-center
-            gap-2
-            text-orange-400
+            text-gray-400
+            text-sm
           "
           >
-            <Flame size={18} />
-            Streak
-          </div>
+            Testlar
+          </p>
 
           <h2
             className="
-            text-4xl
-            font-bold
-            mt-4
+            mt-2
+            text-3xl
+            font-black
           "
           >
-            32
+            148
           </h2>
-
-          <p className="text-gray-400 mt-1">
-            kun
-          </p>
         </div>
 
+        {/* STREAK */}
         <div
           className="
-          rounded-3xl
-          p-5
-          bg-white/5
+          rounded-[28px]
           border
           border-white/10
+          bg-white/[0.03]
+          p-5
         "
         >
-          <div
+          <p
             className="
-            flex
-            items-center
-            gap-2
+            text-gray-400
+            text-sm
+          "
+          >
+            Streak
+          </p>
+
+          <h2
+            className="
+            mt-2
+            text-3xl
+            font-black
             text-yellow-400
           "
           >
-            <Trophy size={18} />
-            Reyting
-          </div>
-
-          <h2
-            className="
-            text-4xl
-            font-bold
-            mt-4
-          "
-          >
-            #12
+            3 🔥
           </h2>
-
-          <p className="text-gray-400 mt-1">
-            global
-          </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* ACHIEVEMENTS */}
-      <div
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.2,
+        }}
         className="
         relative
         z-10
+        mt-8
       "
       >
+        {/* TITLE */}
         <div
           className="
           flex
           items-center
           justify-between
-          mb-4
         "
         >
           <h2
             className="
             text-2xl
-            font-bold
+            font-black
           "
           >
             Achievementlar
           </h2>
 
-          <button className="text-yellow-400">
+          <button
+            className="
+            text-sm
+            text-yellow-300
+          "
+          >
             Barchasi
           </button>
         </div>
 
+        {/* LIST */}
         <div
           className="
-          flex
-          gap-4
-          overflow-x-auto
-          pb-2
-        "
-        >
-          {/* CARD */}
-          <div
-            className="
-            min-w-[180px]
-            rounded-3xl
-            p-5
-            bg-gradient-to-br
-            from-[#1a2d4a]
-            to-[#0b1523]
-            border
-            border-white/10
-          "
-          >
-            <div
-              className="
-              w-14
-              h-14
-              rounded-2xl
-              bg-yellow-500/20
-              flex
-              items-center
-              justify-center
-            "
-            >
-              <Medal
-                className="
-                text-yellow-400
-              "
-              />
-            </div>
-
-            <h3
-              className="
-              text-xl
-              font-bold
-              mt-5
-            "
-            >
-              Top 10
-            </h3>
-
-            <p
-              className="
-              text-gray-400
-              mt-2
-              text-sm
-            "
-            >
-              Leaderboard top 10
-            </p>
-          </div>
-
-          {/* CARD */}
-          <div
-            className="
-            min-w-[180px]
-            rounded-3xl
-            p-5
-            bg-gradient-to-br
-            from-[#2b173f]
-            to-[#12091d]
-            border
-            border-white/10
-          "
-          >
-            <div
-              className="
-              w-14
-              h-14
-              rounded-2xl
-              bg-pink-500/20
-              flex
-              items-center
-              justify-center
-            "
-            >
-              <Star
-                className="
-                text-pink-400
-              "
-              />
-            </div>
-
-            <h3
-              className="
-              text-xl
-              font-bold
-              mt-5
-            "
-            >
-              Elite
-            </h3>
-
-            <p
-              className="
-              text-gray-400
-              mt-2
-              text-sm
-            "
-            >
-              10 000 XP to‘plandi
-            </p>
-          </div>
-
-          {/* CARD */}
-          <div
-            className="
-            min-w-[180px]
-            rounded-3xl
-            p-5
-            bg-gradient-to-br
-            from-[#163127]
-            to-[#091b15]
-            border
-            border-white/10
-          "
-          >
-            <div
-              className="
-              w-14
-              h-14
-              rounded-2xl
-              bg-green-500/20
-              flex
-              items-center
-              justify-center
-            "
-            >
-              <BookOpen
-                className="
-                text-green-400
-              "
-              />
-            </div>
-
-            <h3
-              className="
-              text-xl
-              font-bold
-              mt-5
-            "
-            >
-              Bilimdon
-            </h3>
-
-            <p
-              className="
-              text-gray-400
-              mt-2
-              text-sm
-            "
-            >
-              1000 savol ishlangan
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* MOTIVATION */}
-      <div
-        className="
-        relative
-        z-10
-        rounded-3xl
-        p-6
-        bg-gradient-to-r
-        from-[#132238]
-        to-[#0b1523]
-        border
-        border-yellow-500/10
-      "
-      >
-        <h2
-          className="
-          text-2xl
-          font-bold
-        "
-        >
-          Davom eting 🚀
-        </h2>
-
-        <p
-          className="
           mt-4
-          text-gray-300
-          leading-relaxed
+          space-y-4
         "
         >
-          Har kuni test ishlash orqali
-          XP yig‘ing va tarix
-          masteriga aylaning.
-        </p>
-      </div>
+          {achievements.map(
+            (
+              item,
+              index
+            ) => {
+              const Icon =
+                item.icon;
+
+              return (
+                <motion.div
+                  key={index}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                  rounded-[28px]
+                  border
+                  border-white/10
+                  bg-white/[0.03]
+                  p-5
+                "
+                >
+                  <div
+                    className="
+                    flex
+                    items-center
+                    justify-between
+                  "
+                  >
+                    <div
+                      className="
+                      flex
+                      items-center
+                      gap-4
+                    "
+                    >
+                      {/* ICON */}
+                      <div
+                        className="
+                        w-14
+                        h-14
+                        rounded-2xl
+                        bg-yellow-500/10
+                        flex
+                        items-center
+                        justify-center
+                      "
+                      >
+                        <Icon
+                          className="
+                          text-yellow-400
+                        "
+                        />
+                      </div>
+
+                      {/* TEXT */}
+                      <div>
+                        <h3
+                          className="
+                          text-lg
+                          font-semibold
+                        "
+                        >
+                          {
+                            item.title
+                          }
+                        </h3>
+
+                        <p
+                          className="
+                          mt-1
+                          text-sm
+                          text-gray-400
+                        "
+                        >
+                          Achievement ochildi
+                        </p>
+                      </div>
+                    </div>
+
+                    <ChevronRight
+                      className="
+                      text-gray-500
+                    "
+                    />
+                  </div>
+                </motion.div>
+              );
+            }
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 }
