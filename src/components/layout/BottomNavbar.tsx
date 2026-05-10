@@ -6,25 +6,11 @@ import {
   User,
 } from "lucide-react";
 
-import { Link } from (
-  "react-router-dom"
-);
+import { Link } from "react-router-dom";
 
 export default function BottomNavbar() {
   return (
-    <div
-      className="
-        fixed
-        bottom-0
-        left-0
-        right-0
-        flex
-        justify-around
-        border-t
-        bg-white
-        p-4
-      "
-    >
+    <div className="fixed bottom-0 left-0 right-0 flex justify-around border-t bg-white p-4">
       <Link to="/">
         <House />
       </Link>

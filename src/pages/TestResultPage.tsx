@@ -2,17 +2,11 @@ import {
   useParams,
 } from "react-router-dom";
 
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
 export default function TestResultPage() {
   const { sessionId } = useParams();
@@ -43,12 +37,7 @@ export default function TestResultPage() {
 
   return (
     <div className="space-y-4">
-      <h1
-        className="
-          text-3xl
-          font-bold
-        "
-      >
+      <h1 className="text-3xl font-bold">
         Natija
       </h1>
 
@@ -57,13 +46,7 @@ export default function TestResultPage() {
           To‘g‘ri javoblar
         </p>
 
-        <h2
-          className="
-            mt-2
-            text-5xl
-            font-bold
-          "
-        >
+        <h2 className="mt-2 text-5xl font-bold">
           {data.correct}
         </h2>
       </Card>
@@ -73,13 +56,7 @@ export default function TestResultPage() {
           Foiz
         </p>
 
-        <h2
-          className="
-            mt-2
-            text-5xl
-            font-bold
-          "
-        >
+        <h2 className="mt-2 text-5xl font-bold">
           {data.percentage}%
         </h2>
       </Card>

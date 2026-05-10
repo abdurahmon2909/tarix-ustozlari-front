@@ -1,14 +1,8 @@
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Button from (
-  "../components/ui/Button"
-);
+import Button from "../components/ui/Button";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
 export default function PremiumPage() {
   return (
@@ -20,29 +14,16 @@ export default function PremiumPage() {
 
       <Card>
         <ul className="space-y-3">
-          <li>
-            ✅ AI explanation
-          </li>
+          <li>✅ AI explanation</li>
 
-          <li>
-            ✅ Unlimited tests
-          </li>
+          <li>✅ Unlimited tests</li>
 
-          <li>
-            ✅ Premium arena
-          </li>
+          <li>✅ Premium arena</li>
 
-          <li>
-            ✅ Advanced analytics
-          </li>
+          <li>✅ Advanced analytics</li>
         </ul>
 
-        <Button
-          className="
-            mt-6
-            w-full
-          "
-        >
+        <Button className="mt-6 w-full">
           Premium olish
         </Button>
       </Card>

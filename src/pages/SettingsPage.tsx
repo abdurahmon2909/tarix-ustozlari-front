@@ -1,18 +1,10 @@
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Button from (
-  "../components/ui/Button"
-);
+import Button from "../components/ui/Button";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import { useThemeStore } from (
-  "../store/theme.store"
-);
+import { useThemeStore } from "../store/theme.store";
 
 export default function SettingsPage() {
   const {
@@ -28,13 +20,7 @@ export default function SettingsPage() {
       />
 
       <Card>
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-          "
-        >
+        <div className="flex items-center justify-between">
           <div>
             <h2 className="font-bold">
               Theme

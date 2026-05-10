@@ -1,30 +1,18 @@
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
 import {
   useNavigate,
 } from "react-router-dom";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Empty from (
-  "../components/ui/Empty"
-);
+import Empty from "../components/ui/Empty";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import BookCard from (
-  "../components/books/BookCard"
-);
+import BookCard from "../components/books/BookCard";
 
-import { getBooks } from (
-  "../features/books/books.api"
-);
+import { getBooks } from "../features/books/books.api";
 
 export default function BooksPage() {
   const navigate = useNavigate();
@@ -34,7 +22,6 @@ export default function BooksPage() {
     isLoading,
   } = useQuery({
     queryKey: ["books"],
-
     queryFn: getBooks,
   });
 
@@ -55,7 +42,7 @@ export default function BooksPage() {
         subtitle="Tarix kitoblari"
       />
 
-      {data.map((book: any) => (
+      {data?.map((book: any) => (
         <BookCard
           key={book.id}
           book={book}

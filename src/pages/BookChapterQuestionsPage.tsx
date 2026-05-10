@@ -2,21 +2,13 @@ import {
   useParams,
 } from "react-router-dom";
 
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Empty from (
-  "../components/ui/Empty"
-);
+import Empty from "../components/ui/Empty";
 
-import QuestionCard from (
-  "../components/tests/QuestionCard"
-);
+import QuestionCard from "../components/tests/QuestionCard";
 
 import {
   getBookQuestions,

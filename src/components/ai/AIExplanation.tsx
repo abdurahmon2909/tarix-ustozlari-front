@@ -1,14 +1,8 @@
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Card from (
-  "../ui/Card"
-);
+import Card from "../ui/Card";
 
-import Loading from (
-  "../ui/Loading"
-);
+import Loading from "../ui/Loading";
 
 import {
   getAIExplanation,

@@ -1,6 +1,4 @@
-import Card from (
-  "../ui/Card"
-);
+import Card from "../ui/Card";
 
 interface Props {
   title: string;
@@ -18,23 +16,11 @@ export default function DailyChallengeCard({
         Daily Challenge
       </p>
 
-      <h2
-        className="
-          mt-2
-          text-xl
-          font-bold
-        "
-      >
+      <h2 className="mt-2 text-xl font-bold">
         {title}
       </h2>
 
-      <p
-        className="
-          mt-2
-          text-sm
-          text-blue-600
-        "
-      >
+      <p className="mt-2 text-sm text-blue-600">
         +{xp} XP
       </p>
     </Card>

@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 
-import BattlePlayerCard from (
-  "../components/arena/BattlePlayerCard"
-);
+import BattlePlayerCard from "../components/arena/BattlePlayerCard"
 
-import BattleTimer from (
-  "../components/arena/BattleTimer"
-);
+import BattleTimer from "../components/arena/BattleTimer"
 
-import QuestionCard from (
-  "../components/tests/QuestionCard"
-);
+import QuestionCard from "../components/tests/QuestionCard"
 
 import {
   connectArena,

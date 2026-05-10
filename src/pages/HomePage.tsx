@@ -1,45 +1,26 @@
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import StatCard from (
-  "../components/ui/StatCard"
-);
+import StatCard from "../components/ui/StatCard";
 
-import DailyChallengeCard from (
-  "../components/home/DailyChallengeCard"
-);
+import DailyChallengeCard from "../components/home/DailyChallengeCard";
 
-import { getHomeData } from (
-  "../features/home/home.api"
-);
+import { getHomeData } from "../features/home/home.api";
 
-import {
-  getDailyChallenge,
-} from "../features/daily/daily.api";
+import { getDailyChallenge } from "../features/daily/daily.api";
 
 export default function HomePage() {
   const { data } = useQuery({
     queryKey: ["home"],
-
     queryFn: getHomeData,
   });
 
-  const {
-    data: daily,
-  } = useQuery({
+  const { data: daily } = useQuery({
     queryKey: ["daily"],
-
-    queryFn:
-      getDailyChallenge,
+    queryFn: getDailyChallenge,
   });
 
   return (
@@ -54,24 +35,14 @@ export default function HomePage() {
           Bugungi motivatsiya
         </p>
 
-        <h2
-          className="
-            mt-2
-            text-xl
-            font-bold
-          "
-        >
-          {
-            data?.quote
-            || "Ilm — kuchdir"
-          }
+        <h2 className="mt-2 text-xl font-bold">
+          {data?.quote || "Ilm — kuchdir"}
         </h2>
       </Card>
 
       <DailyChallengeCard
         title={
-          daily?.title
-          || "10 ta savol yeching"
+          daily?.title || "10 ta savol yeching"
         }
         xp={daily?.xp || 50}
       />

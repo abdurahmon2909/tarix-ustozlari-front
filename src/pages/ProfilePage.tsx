@@ -1,40 +1,24 @@
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Card from (
-  "../components/ui/Card"
-);
-import AnalyticsChart from (
-  "../components/charts/AnalyticsChart"
-);
-import ProfileStats from (
-  "../components/profile/ProfileStats"
-);
+import Card from "../components/ui/Card";
 
-import { useAuthStore } from (
-  "../store/auth.store"
-);
+import AnalyticsChart from "../components/charts/AnalyticsChart";
 
-import { getProfile } from (
-  "../features/profile/profile.api"
-);
+import ProfileStats from "../components/profile/ProfileStats";
 
-import { getStatistics } from (
-  "../features/statistics/statistics.api"
-);
+import { useAuthStore } from "../store/auth.store";
+
+import { getProfile } from "../features/profile/profile.api";
+
+import { getStatistics } from "../features/statistics/statistics.api";
 
 export default function ProfilePage() {
   const user = useAuthStore(
-    (state) => state.user
+    (state: any) => state.user
   );
 
   const {
@@ -42,7 +26,6 @@ export default function ProfilePage() {
     isLoading,
   } = useQuery({
     queryKey: ["profile"],
-
     queryFn: () =>
       getProfile(user?.id || 1),
   });
@@ -51,7 +34,6 @@ export default function ProfilePage() {
     data: statistics,
   } = useQuery({
     queryKey: ["statistics"],
-
     queryFn: () =>
       getStatistics(user?.id || 1),
   });
@@ -68,31 +50,9 @@ export default function ProfilePage() {
       />
 
       <Card>
-        <div
-          className="
-            flex
-            items-center
-            gap-4
-          "
-        >
-          <div
-            className="
-              flex
-              h-16
-              w-16
-              items-center
-              justify-center
-              rounded-full
-              bg-black
-              text-2xl
-              font-bold
-              text-white
-            "
-          >
-            {
-              profile?.full_name?.[0]
-              || "U"
-            }
+        <div className="flex items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black text-2xl font-bold text-white">
+            {profile?.full_name?.[0] || "U"}
           </div>
 
           <div>
@@ -114,7 +74,8 @@ export default function ProfilePage() {
           statistics?.accuracy
         }
       />
+
+      <AnalyticsChart />
     </div>
   );
 }
-<AnalyticsChart />

@@ -3,29 +3,19 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Button from (
-  "../components/ui/Button"
-);
+import Button from "../components/ui/Button";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import { getBookChapters } from (
-  "../features/books/book-chapters.api"
-);
+import {
+  getBookChapters,
+} from "../features/books/book-chapters.api";
 
 export default function BookDetailPage() {
   const { bookId } = useParams();
@@ -74,13 +64,7 @@ export default function BookDetailPage() {
       {data?.map(
         (chapter: any) => (
           <Card key={chapter.id}>
-            <div
-              className="
-                flex
-                items-center
-                justify-between
-              "
-            >
+            <div className="flex items-center justify-between">
               <div>
                 <h2 className="font-bold">
                   {

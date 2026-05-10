@@ -1,26 +1,14 @@
-import { Outlet } from (
-  "react-router-dom"
-);
+import { Outlet } from "react-router-dom";
 
-import BottomNavbar from (
-  "./BottomNavbar"
-);
+import BottomNavbar from "./BottomNavbar";
 
-import TopBar from (
-  "./TopBar"
-);
+import TopBar from "./TopBar";
 
-import ToastContainer from (
-  "../ui/ToastContainer"
-);
+import ToastContainer from "../ui/ToastContainer";
 
-import OfflineBanner from (
-  "../ui/OfflineBanner"
-);
+import OfflineBanner from "../ui/OfflineBanner";
 
-import PageContainer from (
-  "../ui/PageContainer"
-);
+import PageContainer from "../ui/PageContainer";
 
 import {
   useNotifications,

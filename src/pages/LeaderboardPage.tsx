@@ -1,26 +1,14 @@
-import { useQuery } from (
-  "@tanstack/react-query"
-);
+import { useQuery } from "@tanstack/react-query";
 
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Empty from (
-  "../components/ui/Empty"
-);
+import Empty from "../components/ui/Empty";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
-import { getLeaderboard } from (
-  "../features/leaderboard/leaderboard.api"
-);
+import { getLeaderboard } from "../features/leaderboard/leaderboard.api";
 
 export default function LeaderboardPage() {
   const {
@@ -28,7 +16,6 @@ export default function LeaderboardPage() {
     isLoading,
   } = useQuery({
     queryKey: ["leaderboard"],
-
     queryFn: getLeaderboard,
   });
 
@@ -52,13 +39,7 @@ export default function LeaderboardPage() {
       {data.map(
         (user: any, index: number) => (
           <Card key={user.id}>
-            <div
-              className="
-                flex
-                items-center
-                justify-between
-              "
-            >
+            <div className="flex items-center justify-between">
               <div>
                 <p className="font-bold">
                   #{index + 1}
@@ -69,11 +50,7 @@ export default function LeaderboardPage() {
                 </h2>
               </div>
 
-              <div
-                className="
-                  text-right
-                "
-              >
+              <div className="text-right">
                 <p className="text-sm text-gray-500">
                   XP
                 </p>

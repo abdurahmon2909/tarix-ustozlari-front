@@ -4,21 +4,13 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import Card from (
-  "../components/ui/Card"
-);
+import Card from "../components/ui/Card";
 
-import Loading from (
-  "../components/ui/Loading"
-);
+import Loading from "../components/ui/Loading";
 
-import Empty from (
-  "../components/ui/Empty"
-);
+import Empty from "../components/ui/Empty";
 
-import PageHeader from (
-  "../components/ui/PageHeader"
-);
+import PageHeader from "../components/ui/PageHeader";
 
 import {
   searchQuestions,
@@ -59,14 +51,7 @@ export default function SearchPage() {
           )
         }
         placeholder="Qidirish..."
-        className="
-          w-full
-          rounded-2xl
-          border
-          bg-white
-          p-4
-          outline-none
-        "
+        className="w-full rounded-2xl border bg-white p-4 outline-none"
       />
 
       {isLoading && <Loading />}
@@ -89,13 +74,7 @@ export default function SearchPage() {
                 }
               </h2>
 
-              <p
-                className="
-                  mt-2
-                  text-sm
-                  text-gray-500
-                "
-              >
+              <p className="mt-2 text-sm text-gray-500">
                 {
                   question.topic
                 }
