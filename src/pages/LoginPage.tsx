@@ -17,16 +17,37 @@ export default function LoginPage() {
     useTelegram();
 
   async function handleLogin() {
-    const data = await telegramLogin(
-      telegramUser?.id || 123456,
-      telegramUser?.username ||
-        "telegram_user"
-    );
+    try {
+      console.log("BUTTON CLICKED");
 
-    setAuth(
-      data.user,
-      data.access_token
-    );
+      console.log(
+        "Telegram user:",
+        telegramUser
+      );
+
+      const data =
+        await telegramLogin(
+          telegramUser?.id || 123456,
+          telegramUser?.username ||
+            "telegram_user"
+        );
+
+      console.log(
+        "LOGIN RESPONSE:",
+        data
+      );
+
+      setAuth(
+        data.user,
+        data.access_token
+      );
+
+      alert("Login success");
+    } catch (error) {
+      console.error(error);
+
+      alert("Login error");
+    }
   }
 
   useEffect(() => {
