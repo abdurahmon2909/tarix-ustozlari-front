@@ -1,69 +1,68 @@
 import {
   BookOpen,
-  Search,
-  Flame,
+  Sparkles,
+  ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
+const classes = [
+  {
+    title: "5-SINF",
+    books: 2,
+  },
+
+  {
+    title: "6-SINF",
+    books: 2,
+  },
+
+  {
+    title: "7-SINF",
+    books: 3,
+  },
+
+  {
+    title: "8-SINF",
+    books: 3,
+  },
+];
+
 const books = [
   {
-    id: 1,
-    title: "O‘zbekiston tarixi",
-    grade: "10-sinf",
-    chapters: 24,
-    color:
-      "from-blue-500/20 to-cyan-500/10",
+    title:
+      "O‘zbekiston tarixi",
+    chapters: 12,
+    progress: 68,
   },
+
   {
-    id: 2,
     title: "Jahon tarixi",
-    grade: "11-sinf",
-    chapters: 18,
-    color:
-      "from-purple-500/20 to-pink-500/10",
-  },
-  {
-    id: 3,
-    title: "Qadimgi dunyo",
-    grade: "7-sinf",
-    chapters: 15,
-    color:
-      "from-orange-500/20 to-yellow-500/10",
+    chapters: 10,
+    progress: 42,
   },
 ];
 
 export default function BooksPage() {
   return (
-    <div className="relative pt-6 space-y-6 overflow-hidden">
-      {/* GLOWS */}
+    <div className="relative pb-10">
+      {/* BG */}
       <div
         className="
         absolute
         top-0
-        left-0
-        w-72
-        h-72
+        left-1/2
+        -translate-x-1/2
+        w-80
+        h-80
         rounded-full
-        bg-blue-500/20
+        bg-blue-500/10
         blur-[120px]
       "
       />
 
-      <div
-        className="
-        absolute
-        top-40
-        right-0
-        w-72
-        h-72
-        rounded-full
-        bg-purple-500/20
-        blur-[120px]
-      "
-      />
-
-      {/* HEADER */}
+      {/* HERO */}
       <motion.div
         initial={{
           opacity: 0,
@@ -78,239 +77,509 @@ export default function BooksPage() {
         z-10
       "
       >
-        <p className="text-gray-400">
-          Tarix kitoblari
-        </p>
-
-        <h1
+        <div
           className="
-          text-4xl
-          font-bold
-          mt-2
+          overflow-hidden
+          rounded-[36px]
+          border
+          border-blue-500/20
+          bg-gradient-to-br
+          from-[#132238]
+          via-[#101c2f]
+          to-[#0a1422]
+          p-6
+          shadow-2xl
+          shadow-blue-500/10
         "
         >
-          Kitoblar 📚
-        </h1>
+          {/* BADGE */}
+          <div
+            className="
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            bg-blue-500/10
+            px-4
+            py-2
+            text-blue-300
+            text-sm
+            font-semibold
+          "
+          >
+            <BookOpen size={16} />
+
+            PREMIUM BOOKS
+          </div>
+
+          {/* TITLE */}
+          <h1
+            className="
+            mt-5
+            text-4xl
+            font-black
+            leading-tight
+          "
+          >
+            Tarix
+            kutubxonasi
+          </h1>
+
+          <p
+            className="
+            mt-4
+            text-gray-400
+            leading-relaxed
+          "
+          >
+            Sinflar, kitoblar
+            va boblar bo‘yicha
+            test ishlang
+          </p>
+
+          {/* CTA */}
+          <button
+            className="
+            mt-8
+            w-full
+            h-16
+            rounded-2xl
+            bg-gradient-to-r
+            from-blue-500
+            to-cyan-500
+            text-white
+            text-lg
+            font-black
+            shadow-xl
+            shadow-blue-500/20
+          "
+          >
+            📚 Test ishlashni boshlash
+          </button>
+        </div>
       </motion.div>
 
-      {/* SEARCH */}
-      <div
+      {/* CLASSES */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.1,
+        }}
         className="
         relative
         z-10
-        flex
-        items-center
-        gap-3
-        px-5
-        py-4
-        rounded-3xl
-        bg-white/5
-        border
-        border-white/10
-        backdrop-blur-xl
+        mt-8
       "
       >
-        <Search
-          className="
-          text-gray-400
-        "
-        />
-
-        <input
-          placeholder="Kitob qidirish..."
-          className="
-          bg-transparent
-          outline-none
-          w-full
-          text-white
-          placeholder:text-gray-500
-        "
-        />
-      </div>
-
-      {/* DAILY BOOK */}
-      <div
-        className="
-        relative
-        z-10
-        rounded-3xl
-        p-5
-        bg-gradient-to-br
-        from-[#132238]
-        to-[#09111d]
-        border
-        border-yellow-500/20
-        shadow-2xl
-        shadow-yellow-500/10
-      "
-      >
+        {/* TITLE */}
         <div
           className="
           flex
           items-center
+          justify-between
+        "
+        >
+          <h2
+            className="
+            text-2xl
+            font-black
+          "
+          >
+            Sinflar
+          </h2>
+
+          <button
+            className="
+            text-sm
+            text-blue-300
+          "
+          >
+            Barchasi
+          </button>
+        </div>
+
+        {/* GRID */}
+        <div
+          className="
+          mt-4
+          grid
+          grid-cols-2
           gap-4
         "
         >
-          <div
-            className="
-            w-16
-            h-16
-            rounded-3xl
-            bg-yellow-500/20
-            flex
-            items-center
-            justify-center
-          "
-          >
-            <Flame
-              className="
-              text-yellow-400
-            "
-            />
-          </div>
-
-          <div>
-            <p className="text-gray-400">
-              Tavsiya etilgan
-            </p>
-
-            <h2
-              className="
-              text-2xl
-              font-bold
-              mt-1
-            "
-            >
-              Temuriylar davri
-            </h2>
-          </div>
-        </div>
-
-        <button
-          className="
-          mt-5
-          w-full
-          py-4
-          rounded-2xl
-          bg-yellow-400
-          text-black
-          font-bold
-        "
-        >
-          O‘qishni boshlash
-        </button>
-      </div>
-
-      {/* BOOK LIST */}
-      <div className="relative z-10 space-y-5">
-        {books.map(
-          (
-            book,
-            index
-          ) => (
-            <motion.div
-              key={book.id}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay:
-                  index * 0.05,
-              }}
-              className={`
-                rounded-3xl
-                p-5
-                bg-gradient-to-br
-                ${book.color}
+          {classes.map(
+            (
+              item,
+              index
+            ) => (
+              <motion.div
+                key={index}
+                whileTap={{
+                  scale: 0.97,
+                }}
+                className="
+                rounded-[28px]
                 border
                 border-white/10
-                backdrop-blur-xl
-              `}
-            >
-              <div
-                className="
-                flex
-                items-start
-                justify-between
+                bg-white/[0.03]
+                p-5
               "
               >
-                <div>
-                  <p className="text-gray-300">
-                    {book.grade}
-                  </p>
-
-                  <h2
-                    className="
-                    text-3xl
-                    font-bold
-                    mt-2
-                  "
-                  >
-                    {book.title}
-                  </h2>
-                </div>
-
+                {/* ICON */}
                 <div
                   className="
                   w-14
                   h-14
                   rounded-2xl
-                  bg-white/10
+                  bg-blue-500/10
                   flex
                   items-center
                   justify-center
                 "
                 >
-                  <BookOpen />
-                </div>
-              </div>
-
-              <div
-                className="
-                flex
-                items-center
-                justify-between
-                mt-8
-              "
-              >
-                <div>
-                  <p className="text-gray-300">
-                    Boblar
-                  </p>
-
-                  <h3
+                  <GraduationCap
                     className="
-                    text-2xl
-                    font-bold
-                    mt-1
+                    text-blue-400
                   "
-                  >
-                    {book.chapters}
-                  </h3>
+                  />
                 </div>
 
-                <button
+                {/* TEXT */}
+                <h3
                   className="
-                  px-5
-                  py-3
-                  rounded-2xl
-                  bg-white
-                  text-black
-                  font-bold
+                  mt-5
+                  text-xl
+                  font-black
                 "
                 >
-                  Ochish
-                </button>
-              </div>
-            </motion.div>
-          )
-        )}
-      </div>
+                  {item.title}
+                </h3>
+
+                <p
+                  className="
+                  mt-2
+                  text-sm
+                  text-gray-400
+                "
+                >
+                  {
+                    item.books
+                  }{" "}
+                  ta kitob
+                </p>
+              </motion.div>
+            )
+          )}
+        </div>
+      </motion.div>
+
+      {/* BOOKS */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.2,
+        }}
+        className="
+        relative
+        z-10
+        mt-8
+      "
+      >
+        {/* TITLE */}
+        <div
+          className="
+          flex
+          items-center
+          justify-between
+        "
+        >
+          <h2
+            className="
+            text-2xl
+            font-black
+          "
+          >
+            Kitoblar
+          </h2>
+
+          <button
+            className="
+            text-sm
+            text-blue-300
+          "
+          >
+            Ko‘proq
+          </button>
+        </div>
+
+        {/* LIST */}
+        <div
+          className="
+          mt-4
+          space-y-4
+        "
+        >
+          {books.map(
+            (
+              item,
+              index
+            ) => (
+              <motion.div
+                key={index}
+                whileTap={{
+                  scale: 0.98,
+                }}
+                className="
+                rounded-[28px]
+                border
+                border-white/10
+                bg-white/[0.03]
+                p-5
+              "
+              >
+                {/* TOP */}
+                <div
+                  className="
+                  flex
+                  items-center
+                  justify-between
+                "
+                >
+                  <div
+                    className="
+                    flex
+                    items-center
+                    gap-4
+                  "
+                  >
+                    {/* ICON */}
+                    <div
+                      className="
+                      w-14
+                      h-14
+                      rounded-2xl
+                      bg-blue-500/10
+                      flex
+                      items-center
+                      justify-center
+                    "
+                    >
+                      <BookOpen
+                        className="
+                        text-blue-400
+                      "
+                      />
+                    </div>
+
+                    {/* INFO */}
+                    <div>
+                      <h3
+                        className="
+                        text-lg
+                        font-semibold
+                      "
+                      >
+                        {
+                          item.title
+                        }
+                      </h3>
+
+                      <p
+                        className="
+                        mt-1
+                        text-sm
+                        text-gray-400
+                      "
+                      >
+                        {
+                          item.chapters
+                        }{" "}
+                        ta bob
+                      </p>
+                    </div>
+                  </div>
+
+                  <ChevronRight
+                    className="
+                    text-gray-500
+                  "
+                  />
+                </div>
+
+                {/* PROGRESS */}
+                <div className="mt-6">
+                  <div
+                    className="
+                    flex
+                    items-center
+                    justify-between
+                    mb-2
+                  "
+                  >
+                    <p
+                      className="
+                      text-sm
+                      text-gray-400
+                    "
+                    >
+                      Progress
+                    </p>
+
+                    <p
+                      className="
+                      text-sm
+                      text-blue-300
+                    "
+                    >
+                      {
+                        item.progress
+                      }
+                      %
+                    </p>
+                  </div>
+
+                  <div
+                    className="
+                    w-full
+                    h-3
+                    rounded-full
+                    bg-white/10
+                    overflow-hidden
+                  "
+                  >
+                    <div
+                      className="
+                      h-full
+                      rounded-full
+                      bg-gradient-to-r
+                      from-blue-500
+                      to-cyan-400
+                    "
+                      style={{
+                        width: `${item.progress}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )
+          )}
+        </div>
+      </motion.div>
+
+      {/* AI TEST */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.3,
+        }}
+        className="
+        relative
+        z-10
+        mt-8
+      "
+      >
+        <div
+          className="
+          rounded-[32px]
+          border
+          border-cyan-500/20
+          bg-gradient-to-br
+          from-cyan-500/10
+          to-blue-500/10
+          p-6
+        "
+        >
+          <div
+            className="
+            flex
+            items-start
+            gap-4
+          "
+          >
+            {/* ICON */}
+            <div
+              className="
+              w-16
+              h-16
+              rounded-3xl
+              bg-cyan-500/10
+              flex
+              items-center
+              justify-center
+            "
+            >
+              <Sparkles
+                size={32}
+                className="
+                text-cyan-300
+              "
+              />
+            </div>
+
+            {/* CONTENT */}
+            <div className="flex-1">
+              <h3
+                className="
+                text-2xl
+                font-black
+              "
+              >
+                AI Test Generator
+              </h3>
+
+              <p
+                className="
+                mt-3
+                text-gray-300
+                leading-relaxed
+              "
+              >
+                Kitob boblari
+                asosida avtomatik
+                savollar yarating
+              </p>
+
+              <button
+                className="
+                mt-6
+                h-14
+                px-6
+                rounded-2xl
+                bg-gradient-to-r
+                from-cyan-500
+                to-blue-500
+                text-white
+                font-bold
+              "
+              >
+                ✨ AI orqali yaratish
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
