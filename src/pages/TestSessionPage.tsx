@@ -9,74 +9,29 @@ import {
 import { motion } from "framer-motion";
 
 import {
-  useMemo,
+  useEffect,
   useState,
 } from "react";
 
-type QuestionType =
-  | "mcq"
-  | "matching"
-  | "chronology"
-  | "map";
+import {
+  useNavigate,
+} from "react-router-dom";
 
-const questions: QuestionType[] = [
-  "mcq",
-  "matching",
-  "chronology",
-  "map",
-];
-
-const mcqAnswers = [
-  "Sovet Ittifoqi",
-  "Rossiya imperiyasi",
-  "Rossiya Respublikasi",
-  "Sotsialistik davlat",
-];
-
-const correctAnswer = 2;
-
-const matchingQuestions = [
-  {
-    left: "Islom Karimov",
-    right:
-      "O‘zbekiston birinchi Prezidenti",
-  },
-  {
-    left: "Amir Temur",
-    right:
-      "Buyuk sarkarda va davlat arbobi",
-  },
-  {
-    left: "Buxoro amirligi",
-    right:
-      "XIX asrda Markaziy Osiyoda mavjud davlat",
-  },
-  {
-    left: "1917-yil fevral inqilobi",
-    right:
-      "Rossiyada yuz bergan inqilob",
-  },
-];
-
-const chronologyEvents = [
-  "Amir Temur tavalludi",
-  "Temuriylar davlati tashkil topdi",
-  "Anqara jangi",
-  "Amir Temur vafoti",
-];
-
-const mapRegions = [
-  "Farg‘ona vodiysi",
-  "Samarqand",
-  "Buxoro",
-  "Xorazm",
-];
+import {
+  testQuestions,
+} from "@/data/testQuestions";
 
 export default function TestSessionPage() {
+  const navigate =
+    useNavigate();
+
   const [
     currentQuestion,
     setCurrentQuestion,
   ] = useState(0);
+
+  const [score, setScore] =
+    useState(0);
 
   const [
     selectedMcq,
@@ -85,16 +40,89 @@ export default function TestSessionPage() {
     null
   );
 
-  const questionType = useMemo(
-    () =>
-      questions[
-        currentQuestion %
-          questions.length
-      ],
-    [currentQuestion]
-  );
+  const [timeLeft, setTimeLeft] =
+    useState(30 * 60);
+
+  const currentData =
+    testQuestions[
+      currentQuestion
+    ];
+
+  const questionType =
+    currentData.type;
+
+  /* =========================
+      TIMER
+  ========================= */
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      navigate(
+        "/test-result",
+        {
+          state: {
+            score,
+            total:
+              testQuestions.length,
+          },
+        }
+      );
+
+      return;
+    }
+
+    const interval =
+      setInterval(() => {
+        setTimeLeft(
+          (prev) => prev - 1
+        );
+      }, 1000);
+
+    return () =>
+      clearInterval(interval);
+  }, [
+    timeLeft,
+    navigate,
+    score,
+  ]);
+
+  /* =========================
+      NEXT QUESTION
+  ========================= */
 
   const nextQuestion = () => {
+    let updatedScore = score;
+
+    if (
+      questionType === "mcq" &&
+      selectedMcq ===
+        currentData.correctAnswer
+    ) {
+      updatedScore += 1;
+
+      setScore(updatedScore);
+    }
+
+    const isLastQuestion =
+      currentQuestion + 1 >=
+      testQuestions.length;
+
+    if (isLastQuestion) {
+      navigate(
+        "/test-result",
+        {
+          state: {
+            score:
+              updatedScore,
+            total:
+              testQuestions.length,
+          },
+        }
+      );
+
+      return;
+    }
+
     setCurrentQuestion(
       (prev) => prev + 1
     );
@@ -136,6 +164,7 @@ export default function TestSessionPage() {
         justify-between
       "
       >
+        {/* BACK */}
         <button
           className="
           w-12
@@ -152,6 +181,7 @@ export default function TestSessionPage() {
           <ChevronLeft size={22} />
         </button>
 
+        {/* TITLE */}
         <div className="text-center">
           <p
             className="
@@ -172,28 +202,46 @@ export default function TestSessionPage() {
           >
             {currentQuestion + 1}
             {" / "}
-            30
+            {
+              testQuestions.length
+            }
           </h2>
         </div>
 
+        {/* TIMER */}
         <div
-          className="
-          px-4
-          py-3
-          rounded-2xl
-          bg-white/5
-          border
-          border-white/10
-          flex
-          items-center
-          gap-2
-        "
+          className={`
+            px-4
+            py-3
+            rounded-2xl
+            border
+            flex
+            items-center
+            gap-2
+            transition-all
+
+            ${
+              timeLeft <= 60
+                ? `
+                border-red-500/40
+                bg-red-500/10
+              `
+                : `
+                border-white/10
+                bg-white/5
+              `
+            }
+          `}
         >
           <Clock3
             size={18}
-            className="
-            text-yellow-400
-          "
+            className={`
+              ${
+                timeLeft <= 60
+                  ? "text-red-400"
+                  : "text-yellow-400"
+              }
+            `}
           />
 
           <span
@@ -202,7 +250,15 @@ export default function TestSessionPage() {
             font-medium
           "
           >
-            24:35
+            {String(
+              Math.floor(
+                timeLeft / 60
+              )
+            ).padStart(2, "0")}
+            :
+            {String(
+              timeLeft % 60
+            ).padStart(2, "0")}
           </span>
         </div>
       </motion.div>
@@ -231,12 +287,14 @@ export default function TestSessionPage() {
             bg-gradient-to-r
             from-yellow-400
             to-yellow-600
+            transition-all
+            duration-500
           "
             style={{
               width: `${
                 ((currentQuestion +
                   1) /
-                  30) *
+                  testQuestions.length) *
                 100
               }%`,
             }}
@@ -244,10 +302,22 @@ export default function TestSessionPage() {
         </div>
       </div>
 
-      {/* MCQ */}
+      {/* =========================
+          MCQ
+      ========================= */}
+
       {questionType === "mcq" && (
         <>
-          <div
+          {/* QUESTION */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             className="
             relative
             z-10
@@ -268,13 +338,13 @@ export default function TestSessionPage() {
               font-semibold
             "
             >
-              1917-yil fevral
-              inqilobi natijasida
-              Rossiyada qaysi
-              davlat tuzildi?
+              {
+                currentData.question
+              }
             </p>
-          </div>
+          </motion.div>
 
+          {/* ANSWERS */}
           <div
             className="
             relative
@@ -283,8 +353,11 @@ export default function TestSessionPage() {
             space-y-4
           "
           >
-            {mcqAnswers.map(
-              (answer, index) => (
+            {currentData.answers?.map(
+              (
+                answer,
+                index
+              ) => (
                 <motion.button
                   key={index}
                   onClick={() =>
@@ -307,7 +380,7 @@ export default function TestSessionPage() {
                       selectedMcq !==
                         null &&
                       index ===
-                        correctAnswer
+                        currentData.correctAnswer
                         ? `
                         border-green-500/40
                         bg-green-500/10
@@ -333,6 +406,7 @@ export default function TestSessionPage() {
                     gap-4
                   "
                   >
+                    {/* LEFT */}
                     <div
                       className="
                       flex
@@ -340,6 +414,7 @@ export default function TestSessionPage() {
                       gap-4
                     "
                     >
+                      {/* RADIO */}
                       <div
                         className={`
                         w-7
@@ -354,7 +429,7 @@ export default function TestSessionPage() {
                           selectedMcq !==
                             null &&
                           index ===
-                            correctAnswer
+                            currentData.correctAnswer
                             ? `
                             border-green-400
                             bg-green-400
@@ -374,7 +449,7 @@ export default function TestSessionPage() {
                         {selectedMcq !==
                           null &&
                           index ===
-                            correctAnswer && (
+                            currentData.correctAnswer && (
                             <Check
                               size={14}
                               className="
@@ -386,7 +461,7 @@ export default function TestSessionPage() {
                         {index ===
                           selectedMcq &&
                           index !==
-                            correctAnswer && (
+                            currentData.correctAnswer && (
                             <X
                               size={14}
                               className="
@@ -396,10 +471,12 @@ export default function TestSessionPage() {
                           )}
                       </div>
 
+                      {/* TEXT */}
                       <span
                         className="
                         text-lg
                         font-medium
+                        leading-relaxed
                       "
                       >
                         {String.fromCharCode(
@@ -417,7 +494,10 @@ export default function TestSessionPage() {
         </>
       )}
 
-      {/* MATCHING */}
+      {/* =========================
+          MATCHING
+      ========================= */}
+
       {questionType ===
         "matching" && (
         <>
@@ -441,7 +521,9 @@ export default function TestSessionPage() {
               font-semibold
             "
             >
-              Moslashtiring
+              {
+                currentData.question
+              }
             </p>
           </div>
 
@@ -453,7 +535,7 @@ export default function TestSessionPage() {
             space-y-4
           "
           >
-            {matchingQuestions.map(
+            {currentData.matching?.map(
               (item, index) => (
                 <div
                   key={index}
@@ -492,7 +574,11 @@ export default function TestSessionPage() {
                       text-white
                     "
                     >
-                      {matchingQuestions.map(
+                      <option>
+                        Tanlang
+                      </option>
+
+                      {currentData.matching.map(
                         (
                           option,
                           optionIndex
@@ -517,7 +603,10 @@ export default function TestSessionPage() {
         </>
       )}
 
-      {/* CHRONOLOGY */}
+      {/* =========================
+          CHRONOLOGY
+      ========================= */}
+
       {questionType ===
         "chronology" && (
         <>
@@ -541,8 +630,9 @@ export default function TestSessionPage() {
               font-semibold
             "
             >
-              Ketma-ketlikda
-              joylashtiring
+              {
+                currentData.question
+              }
             </p>
           </div>
 
@@ -554,10 +644,16 @@ export default function TestSessionPage() {
             space-y-4
           "
           >
-            {chronologyEvents.map(
-              (event, index) => (
-                <div
+            {currentData.chronology?.map(
+              (
+                event,
+                index
+              ) => (
+                <motion.div
                   key={index}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
                   className="
                   rounded-[28px]
                   border
@@ -601,14 +697,17 @@ export default function TestSessionPage() {
                       {event}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               )
             )}
           </div>
         </>
       )}
 
-      {/* MAP */}
+      {/* =========================
+          MAP
+      ========================= */}
+
       {questionType === "map" && (
         <>
           <div
@@ -631,9 +730,9 @@ export default function TestSessionPage() {
               font-semibold
             "
             >
-              Xaritadan
-              Farg‘ona vodiysini
-              belgilang
+              {
+                currentData.question
+              }
             </p>
           </div>
 
@@ -655,15 +754,32 @@ export default function TestSessionPage() {
               className="
               relative
               h-[420px]
+              bg-gradient-to-br
+              from-[#1d324f]
+              via-[#223a5c]
+              to-[#16253b]
             "
             >
-              {mapRegions.map(
+              <div
+                className="
+                absolute
+                inset-0
+                opacity-10
+                bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]
+                bg-[size:32px_32px]
+              "
+              />
+
+              {currentData.mapRegions?.map(
                 (
                   region,
                   index
                 ) => (
-                  <button
+                  <motion.button
                     key={index}
+                    whileTap={{
+                      scale: 0.95,
+                    }}
                     className="
                     absolute
                     px-4
@@ -672,6 +788,8 @@ export default function TestSessionPage() {
                     bg-white/10
                     border
                     border-white/10
+                    text-sm
+                    font-semibold
                     backdrop-blur-xl
                   "
                     style={{
@@ -686,7 +804,7 @@ export default function TestSessionPage() {
                     }}
                   >
                     {region}
-                  </button>
+                  </motion.button>
                 )
               )}
             </div>
@@ -705,6 +823,7 @@ export default function TestSessionPage() {
         gap-4
       "
       >
+        {/* FLAG */}
         <button
           className="
           h-16
@@ -724,6 +843,7 @@ export default function TestSessionPage() {
           Belgilash
         </button>
 
+        {/* NEXT */}
         <button
           onClick={nextQuestion}
           disabled={
@@ -746,7 +866,10 @@ export default function TestSessionPage() {
           disabled:cursor-not-allowed
         "
         >
-          Keyingi →
+          {currentQuestion + 1 >=
+          testQuestions.length
+            ? "Yakunlash"
+            : "Keyingi →"}
         </button>
       </motion.div>
     </div>
