@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="175b8644-08c0-4114-8792-0a45cbb6b6f6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/arena/BattleTimer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/arena/BattleTimer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tests/QuestionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/QuestionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tests/TestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/TestCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tests/TestCardSkeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tests/TestCardSkeleton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/ToastContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/ToastContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ai/ai.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/ai/ai.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/arena/arena.socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/arena/arena.socket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/arena/battle.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/arena/battle.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/books/book-chapters.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/books/book-chapters.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/books/book-questions.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/books/book-questions.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/books/books.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/books/books.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/daily/daily.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/daily/daily.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/home/home.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/home/home.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/leaderboard/leaderboard.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/leaderboard/leaderboard.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/notifications/notifications.socket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/notifications/notifications.socket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/profile.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/profile.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/search/search.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/search/search.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/statistics/statistics.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/statistics/statistics.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/QuestionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/QuestionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/questions.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/questions.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/result.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/result.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/submit-answer.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/submit-answer.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/test-session.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/test-session.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tests/tests.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tests/tests.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useNotifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useNotifications.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useOnline.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useOnline.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useTheme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/BattlePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BattlePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/websocket.ts" afterDir="false" />
-    </list>
+    <list default="true" id="175b8644-08c0-4114-8792-0a45cbb6b6f6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
