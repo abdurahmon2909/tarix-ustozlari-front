@@ -13,10 +13,10 @@ export default function AppShell({
       min-h-screen
       bg-[#050B16]
       text-white
-      pb-28
+      pb-24
     "
     >
-      <main
+      <div
         className="
         max-w-md
         mx-auto
@@ -24,7 +24,7 @@ export default function AppShell({
       "
       >
         {children}
-      </main>
+      </div>
 
       <BottomNav />
     </div>
