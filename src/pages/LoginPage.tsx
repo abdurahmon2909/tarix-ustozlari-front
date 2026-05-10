@@ -13,12 +13,17 @@ export default function LoginPage() {
       const tg =
         (window as any).Telegram?.WebApp;
 
+      tg?.ready();
+
       const user =
         tg?.initDataUnsafe?.user;
 
+      console.log("TG:", tg);
+      console.log("USER:", user);
+
       if (!user) {
         alert(
-          "Telegram user topilmadi"
+          "Telegram user topilmadi. Mini App ichida oching."
         );
         return;
       }
@@ -75,18 +80,18 @@ export default function LoginPage() {
       flex
       flex-col
       justify-between
-      px-6
-      py-8
+      px-5
+      py-6
     "
     >
-      {/* BACKGROUND GLOWS */}
+      {/* GLOWS */}
       <div
         className="
         absolute
         top-[-120px]
         left-[-80px]
-        w-[320px]
-        h-[320px]
+        w-[280px]
+        h-[280px]
         rounded-full
         bg-yellow-500/20
         blur-[120px]
@@ -98,8 +103,8 @@ export default function LoginPage() {
         absolute
         bottom-[-120px]
         right-[-80px]
-        w-[320px]
-        h-[320px]
+        w-[280px]
+        h-[280px]
         rounded-full
         bg-blue-500/20
         blur-[120px]
@@ -118,20 +123,17 @@ export default function LoginPage() {
             opacity: 1,
             scale: 1,
           }}
-          transition={{
-            duration: 0.4,
-          }}
           className="
           flex
           justify-center
-          mt-10
+          mt-6
         "
         >
           <div
             className="
-            w-36
-            h-36
-            rounded-[40px]
+            w-28
+            h-28
+            rounded-[32px]
             bg-gradient-to-br
             from-yellow-400
             to-yellow-600
@@ -143,8 +145,7 @@ export default function LoginPage() {
           "
           >
             <Crown
-              size={70}
-              strokeWidth={2.3}
+              size={54}
               className="text-black"
             />
           </div>
@@ -166,25 +167,24 @@ export default function LoginPage() {
           className="
           flex
           justify-center
-          mt-10
+          mt-8
         "
         >
           <div
             className="
             flex
             items-center
-            gap-3
-            px-6
-            py-3
+            gap-2
+            px-5
+            py-2
             rounded-full
             border
             border-yellow-500/30
             bg-yellow-500/10
-            backdrop-blur-xl
           "
           >
             <Crown
-              size={22}
+              size={18}
               className="
               text-yellow-400
             "
@@ -193,7 +193,7 @@ export default function LoginPage() {
             <span
               className="
               text-yellow-300
-              text-xl
+              text-base
               font-semibold
             "
             >
@@ -217,15 +217,15 @@ export default function LoginPage() {
           }}
           className="
           text-center
-          mt-10
+          mt-8
         "
         >
           <h1
             className="
-            text-[72px]
+            text-[58px]
             leading-[0.95]
             font-black
-            tracking-[-3px]
+            tracking-[-2px]
           "
           >
             Tarix
@@ -235,8 +235,8 @@ export default function LoginPage() {
 
           <p
             className="
-            mt-8
-            text-[30px]
+            mt-6
+            text-[22px]
             leading-relaxed
             text-gray-300
           "
@@ -263,34 +263,33 @@ export default function LoginPage() {
             delay: 0.2,
           }}
           className="
-          mt-14
-          space-y-6
+          mt-10
+          space-y-5
         "
         >
-          {/* ITEM */}
+          {/* AI */}
           <div
             className="
             flex
             items-center
-            gap-5
+            gap-4
           "
           >
             <div
               className="
-              w-20
-              h-20
-              rounded-[28px]
+              w-16
+              h-16
+              rounded-[24px]
               bg-white/5
               border
               border-white/10
-              backdrop-blur-xl
               flex
               items-center
               justify-center
             "
             >
               <Sparkles
-                size={34}
+                size={28}
                 className="
                 text-cyan-400
               "
@@ -300,7 +299,7 @@ export default function LoginPage() {
             <div>
               <h3
                 className="
-                text-4xl
+                text-2xl
                 font-bold
               "
               >
@@ -310,39 +309,37 @@ export default function LoginPage() {
               <p
                 className="
                 text-gray-400
-                text-2xl
-                mt-1
+                text-lg
               "
               >
-                Smart recommendation system
+                Smart recommendation
               </p>
             </div>
           </div>
 
-          {/* ITEM */}
+          {/* XP */}
           <div
             className="
             flex
             items-center
-            gap-5
+            gap-4
           "
           >
             <div
               className="
-              w-20
-              h-20
-              rounded-[28px]
+              w-16
+              h-16
+              rounded-[24px]
               bg-white/5
               border
               border-white/10
-              backdrop-blur-xl
               flex
               items-center
               justify-center
             "
             >
               <Trophy
-                size={34}
+                size={28}
                 className="
                 text-yellow-400
               "
@@ -352,7 +349,7 @@ export default function LoginPage() {
             <div>
               <h3
                 className="
-                text-4xl
+                text-2xl
                 font-bold
               "
               >
@@ -362,8 +359,7 @@ export default function LoginPage() {
               <p
                 className="
                 text-gray-400
-                text-2xl
-                mt-1
+                text-lg
               "
               >
                 XP va leaderboard
@@ -373,7 +369,7 @@ export default function LoginPage() {
         </motion.div>
       </div>
 
-      {/* LOGIN BUTTON */}
+      {/* BUTTON */}
       <motion.div
         initial={{
           opacity: 0,
@@ -389,30 +385,30 @@ export default function LoginPage() {
         className="
         relative
         z-10
-        mt-12
+        mt-10
       "
       >
         <button
           onClick={handleLogin}
           className="
           w-full
-          h-[88px]
-          rounded-[32px]
+          h-[74px]
+          rounded-[28px]
           bg-gradient-to-r
           from-yellow-400
           to-yellow-600
           text-black
-          text-[34px]
+          text-[26px]
           font-bold
           shadow-2xl
           shadow-yellow-500/30
           flex
           items-center
           justify-center
-          gap-4
+          gap-3
         "
         >
-          <Send size={28} />
+          <Send size={22} />
 
           Telegram orqali kirish
         </button>
@@ -421,9 +417,9 @@ export default function LoginPage() {
           className="
           text-center
           text-gray-500
-          text-xl
+          text-base
           leading-relaxed
-          mt-8
+          mt-6
           px-4
         "
         >
