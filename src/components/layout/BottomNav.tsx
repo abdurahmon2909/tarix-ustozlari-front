@@ -1,44 +1,42 @@
 import {
-  House,
+  Home,
   BookOpen,
   Swords,
-  Library,
   User,
+  ClipboardList,
 } from "lucide-react";
 
-import {
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+const navItems = [
+  {
+    label: "Home",
+    icon: Home,
+    path: "/",
+  },
+  {
+    label: "Tests",
+    icon: ClipboardList,
+    path: "/tests",
+  },
+  {
+    label: "Arena",
+    icon: Swords,
+    path: "/arena",
+  },
+  {
+    label: "Books",
+    icon: BookOpen,
+    path: "/books",
+  },
+  {
+    label: "Profile",
+    icon: User,
+    path: "/profile",
+  },
+];
 
 export default function BottomNav() {
-  const items = [
-    {
-      to: "/",
-      icon: House,
-      label: "Home",
-    },
-    {
-      to: "/tests",
-      icon: BookOpen,
-      label: "Tests",
-    },
-    {
-      to: "/books",
-      icon: Library,
-      label: "Books",
-    },
-    {
-      to: "/arena",
-      icon: Swords,
-      label: "Arena",
-    },
-    {
-      to: "/profile",
-      icon: User,
-      label: "Profile",
-    },
-  ];
-
   return (
     <div
       className="
@@ -49,86 +47,62 @@ export default function BottomNav() {
       z-50
       border-t
       border-white/10
-      bg-[#08101d]/95
+      bg-[#09111d]/95
       backdrop-blur-2xl
-      shadow-2xl
     "
-      style={{
-        paddingBottom:
-          "env(safe-area-inset-bottom)",
-      }}
     >
       <div
         className="
         max-w-md
         mx-auto
-        h-20
         grid
         grid-cols-5
+        px-2
+        py-2
       "
       >
-        {items.map((item) => {
+        {navItems.map((item) => {
           const Icon = item.icon;
 
           return (
             <NavLink
-              key={item.to}
-              to={item.to}
-              className={({
-                isActive,
-              }) =>
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
                 `
-                relative
                 flex
                 flex-col
                 items-center
                 justify-center
                 gap-1
+                py-3
+                rounded-2xl
                 transition-all
                 duration-300
 
                 ${
                   isActive
-                    ? "text-yellow-400"
-                    : "text-gray-500"
+                    ? `
+                    bg-yellow-500/10
+                    text-yellow-400
+                  `
+                    : `
+                    text-gray-500
+                  `
                 }
               `
               }
             >
-              {({
-                isActive,
-              }) => (
-                <>
-                  {/* ACTIVE GLOW */}
-                  {isActive && (
-                    <div
-                      className="
-                      absolute
-                      inset-0
-                      rounded-2xl
-                      bg-yellow-400/5
-                    "
-                    />
-                  )}
+              <Icon size={22} />
 
-                  {/* ICON */}
-                  <div className="relative z-10">
-                    <Icon size={22} />
-                  </div>
-
-                  {/* LABEL */}
-                  <span
-                    className="
-                    relative
-                    z-10
-                    text-[11px]
-                    font-medium
-                  "
-                  >
-                    {item.label}
-                  </span>
-                </>
-              )}
+              <span
+                className="
+                text-[11px]
+                font-medium
+              "
+              >
+                {item.label}
+              </span>
             </NavLink>
           );
         })}
