@@ -10,9 +10,7 @@ import {
   connectArena,
   onArenaMessage,
   sendArenaMessage,
-} from (
-  "../features/arena/arena.socket"
-);
+} from "../features/arena/arena.socket";
 
 export default function BattlePage() {
   const [seconds, setSeconds] =

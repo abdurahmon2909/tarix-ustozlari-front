@@ -1,10 +1,6 @@
-import Card from (
-  "../ui/Card"
-);
+import Card from "../ui/Card";
 
-import Button from (
-  "../ui/Button"
-);
+import Button from "../ui/Button";
 
 interface Props {
   test: any;

@@ -1,6 +1,4 @@
-import { api } from (
-  "../../services/api"
-);
+import { api } from "../../services/api";
 
 export async function getDailyChallenge() {
   const response = await api.get(

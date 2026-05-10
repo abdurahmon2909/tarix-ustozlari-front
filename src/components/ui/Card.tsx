@@ -10,19 +10,7 @@ export default function Card({
 }: Props) {
   return (
     <div
-      className={`
-        rounded-3xl
-        p-5
-        shadow-sm
-        ${className}
-      `}
-      style={{
-        background:
-          "var(--card)",
-
-        border:
-          "1px solid var(--border)",
-      }}
+      className={`rounded-2xl bg-white p-4 shadow-sm ${className}`}
     >
       {children}
     </div>

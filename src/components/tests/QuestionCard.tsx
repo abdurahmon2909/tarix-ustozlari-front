@@ -1,14 +1,8 @@
-import Button from (
-  "../ui/Button"
-);
+import Button from "../ui/Button";
 
-import Card from (
-  "../ui/Card"
-);
+import Card from "../ui/Card";
 
-import AIExplanation from (
-  "../ai/AIExplanation"
-);
+import AIExplanation from "../ai/AIExplanation";
 
 import {
   hapticImpact,

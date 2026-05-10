@@ -1,6 +1,4 @@
-import { websocket } from (
-  "../../services/websocket"
-);
+import { websocket } from "../../services/websocket";
 
 export function connectNotifications() {
   websocket.connect(

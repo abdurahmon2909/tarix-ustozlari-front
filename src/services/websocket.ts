@@ -1,6 +1,4 @@
-import { ENV } from (
-  "../config/env"
-);
+import { ENV } from "../config/env";
 
 class WebSocketService {
   socket: WebSocket | null = null;

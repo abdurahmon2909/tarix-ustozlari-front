@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 
-import { api } from (
-  "../services/api"
-);
+import { api } from "../services/api";
 
-import { useAuthStore } from (
-  "../store/auth.store"
-);
+import { useAuthStore } from "../store/auth.store";
 
 export function useOnline() {
   const user = useAuthStore(

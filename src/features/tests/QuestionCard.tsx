@@ -1,10 +1,6 @@
-import Button from (
-  "../ui/Button"
-);
+import Button from "../../components/ui/Button";
 
-import Card from (
-  "../ui/Card"
-);
+import Card from "../../components/ui/Card";
 
 interface Props {
   question: any;
@@ -20,23 +16,21 @@ export default function QuestionCard({
 }: Props) {
   return (
     <Card>
-      <h2
-        className="
-          text-lg
-          font-bold
-        "
-      >
-        {question.question_text}
+      <h2 className="text-lg font-bold">
+        {
+          question.question_text
+        }
       </h2>
 
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 space-y-2">
         {question.options?.map(
-          (option: string) => (
+          (
+            option: string,
+            index: number
+          ) => (
             <Button
-              key={option}
-              className="
-                w-full
-              "
+              key={index}
+              className="w-full"
               onClick={() =>
                 onAnswer(option)
               }

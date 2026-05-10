@@ -1,8 +1,6 @@
 import Toast from "./Toast";
 
-import { useNotificationStore } from (
-  "../../store/notification.store"
-);
+import { useNotificationStore } from "../../store/notification.store";
 
 export default function ToastContainer() {
   const notifications =

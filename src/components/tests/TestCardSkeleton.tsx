@@ -1,6 +1,4 @@
-import Skeleton from (
-  "../ui/Skeleton"
-);
+import Skeleton from "../ui/Skeleton";
 
 export default function TestCardSkeleton() {
   return (

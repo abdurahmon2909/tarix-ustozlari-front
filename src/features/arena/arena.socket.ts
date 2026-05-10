@@ -1,6 +1,4 @@
-import { websocket } from (
-  "../../services/websocket"
-);
+import { websocket } from "../../services/websocket";
 
 export function connectArena() {
   websocket.connect(

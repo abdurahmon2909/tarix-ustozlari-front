@@ -1,32 +1,20 @@
-import { ButtonHTMLAttributes } from "react";
-
-interface Props
-  extends ButtonHTMLAttributes<
-    HTMLButtonElement
-  > {
+interface Props {
   children: React.ReactNode;
+
+  onClick?: () => void;
+
+  className?: string;
 }
 
 export default function Button({
   children,
+  onClick,
   className = "",
-  ...props
 }: Props) {
   return (
     <button
-      className={`
-        rounded-2xl
-        bg-primary
-        px-5
-        py-3
-        text-sm
-        font-semibold
-        text-white
-        transition
-        hover:opacity-90
-        ${className}
-      `}
-      {...props}
+      onClick={onClick}
+      className={`rounded-xl bg-black px-4 py-2 text-white ${className}`}
     >
       {children}
     </button>
