@@ -2,42 +2,52 @@ import {
   Swords,
   Trophy,
   Flame,
+  Crown,
   Users,
+  ChevronRight,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
+const leaderboard = [
+  {
+    name: "Temur",
+    xp: 12450,
+    rank: 1,
+  },
+
+  {
+    name: "Jaloliddin",
+    xp: 11890,
+    rank: 2,
+  },
+
+  {
+    name: "Bobur",
+    xp: 10920,
+    rank: 3,
+  },
+];
+
 export default function ArenaPage() {
   return (
-    <div className="relative pt-6 space-y-6 overflow-hidden min-h-screen">
-      {/* GLOWS */}
+    <div className="relative pb-10">
+      {/* BG */}
       <div
         className="
         absolute
         top-0
-        left-0
-        w-72
-        h-72
+        left-1/2
+        -translate-x-1/2
+        w-80
+        h-80
         rounded-full
-        bg-red-500/20
+        bg-red-500/10
         blur-[120px]
       "
       />
 
-      <div
-        className="
-        absolute
-        bottom-0
-        right-0
-        w-72
-        h-72
-        rounded-full
-        bg-blue-500/20
-        blur-[120px]
-      "
-      />
-
-      {/* HEADER */}
+      {/* HERO */}
       <motion.div
         initial={{
           opacity: 0,
@@ -52,22 +62,174 @@ export default function ArenaPage() {
         z-10
       "
       >
-        <p className="text-gray-400">
-          Real vaqt rejimida jang
-        </p>
-
-        <h1
+        <div
           className="
-          text-5xl
-          font-bold
-          mt-2
+          overflow-hidden
+          rounded-[36px]
+          border
+          border-red-500/20
+          bg-gradient-to-br
+          from-[#1f1620]
+          via-[#181522]
+          to-[#0b1018]
+          p-6
+          shadow-2xl
+          shadow-red-500/10
         "
         >
-          Arena ⚔️
-        </h1>
+          {/* GLOW */}
+          <div
+            className="
+            absolute
+            top-0
+            right-0
+            w-40
+            h-40
+            rounded-full
+            bg-red-500/10
+            blur-[80px]
+          "
+          />
+
+          {/* TITLE */}
+          <div className="relative z-10">
+            <div
+              className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-red-500/10
+              px-4
+              py-2
+              text-red-300
+              text-sm
+              font-semibold
+            "
+            >
+              <Swords size={16} />
+
+              SARKARDALAR JANGI
+            </div>
+
+            <h1
+              className="
+              mt-5
+              text-4xl
+              font-black
+              leading-tight
+            "
+            >
+              Real vaqt
+              tarixiy duel
+            </h1>
+
+            <p
+              className="
+              mt-4
+              text-gray-400
+              leading-relaxed
+            "
+            >
+              Butun O‘zbekiston
+              bo‘ylab tarixchilar
+              bilan bellashing
+            </p>
+
+            {/* STATS */}
+            <div
+              className="
+              mt-6
+              flex
+              items-center
+              gap-4
+            "
+            >
+              <div
+                className="
+                flex
+                items-center
+                gap-2
+                rounded-2xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                px-4
+                py-3
+              "
+              >
+                <Users
+                  size={18}
+                  className="
+                  text-green-400
+                "
+                />
+
+                <span
+                  className="
+                  text-sm
+                  font-semibold
+                "
+                >
+                  248 online
+                </span>
+              </div>
+
+              <div
+                className="
+                flex
+                items-center
+                gap-2
+                rounded-2xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                px-4
+                py-3
+              "
+              >
+                <Flame
+                  size={18}
+                  className="
+                  text-yellow-400
+                "
+                />
+
+                <span
+                  className="
+                  text-sm
+                  font-semibold
+                "
+                >
+                  x2 XP
+                </span>
+              </div>
+            </div>
+
+            {/* BUTTON */}
+            <button
+              className="
+              mt-8
+              w-full
+              h-16
+              rounded-2xl
+              bg-gradient-to-r
+              from-red-500
+              to-orange-500
+              text-white
+              text-lg
+              font-black
+              shadow-xl
+              shadow-red-500/20
+            "
+            >
+              ⚔️ Duel boshlash
+            </button>
+          </div>
+        </div>
       </motion.div>
 
-      {/* HERO CARD */}
+      {/* RANK */}
       <motion.div
         initial={{
           opacity: 0,
@@ -77,35 +239,26 @@ export default function ArenaPage() {
           opacity: 1,
           y: 0,
         }}
+        transition={{
+          delay: 0.1,
+        }}
         className="
         relative
         z-10
-        overflow-hidden
-        rounded-[32px]
-        p-6
-        bg-gradient-to-br
-        from-[#2a1020]
-        to-[#09111d]
-        border
-        border-red-500/20
-        shadow-2xl
-        shadow-red-500/10
+        mt-6
       "
       >
         <div
           className="
-          absolute
-          -top-10
-          -right-10
-          w-40
-          h-40
-          rounded-full
-          bg-red-500/20
-          blur-[80px]
+          rounded-[32px]
+          border
+          border-yellow-500/20
+          bg-gradient-to-br
+          from-[#1a1820]
+          to-[#111827]
+          p-6
         "
-        />
-
-        <div className="relative z-10">
+        >
           <div
             className="
             flex
@@ -114,18 +267,24 @@ export default function ArenaPage() {
           "
           >
             <div>
-              <p className="text-red-300">
-                Competitive mode
+              <p
+                className="
+                text-gray-400
+                text-sm
+              "
+              >
+                Sizning rankingiz
               </p>
 
               <h2
                 className="
-                text-4xl
-                font-bold
                 mt-2
+                text-4xl
+                font-black
+                text-yellow-400
               "
               >
-                1v1 Battle
+                #18
               </h2>
             </div>
 
@@ -134,234 +293,143 @@ export default function ArenaPage() {
               w-20
               h-20
               rounded-3xl
-              bg-red-500/20
+              bg-yellow-500/10
               flex
               items-center
               justify-center
             "
             >
-              <Swords
-                size={42}
+              <Crown
+                size={40}
                 className="
-                text-red-400
+                text-yellow-400
               "
               />
             </div>
           </div>
 
-          <p
-            className="
-            mt-6
-            text-gray-300
-            leading-relaxed
-          "
-          >
-            Random raqib bilan
-            tarix savollarida
-            duel qiling va
-            reytingni oshiring.
-          </p>
+          {/* XP */}
+          <div className="mt-6">
+            <div
+              className="
+              flex
+              items-center
+              justify-between
+              mb-3
+            "
+            >
+              <p
+                className="
+                text-sm
+                text-gray-400
+              "
+              >
+                Gladiator League
+              </p>
 
-          <button
-            className="
-            mt-6
-            w-full
-            py-5
-            rounded-3xl
-            bg-red-500
-            text-white
-            text-lg
-            font-bold
-            shadow-2xl
-            shadow-red-500/30
-          "
-          >
-            Match topish
-          </button>
+              <p
+                className="
+                text-sm
+                text-yellow-300
+              "
+              >
+                7800 XP
+              </p>
+            </div>
+
+            <div
+              className="
+              w-full
+              h-3
+              rounded-full
+              bg-white/10
+              overflow-hidden
+            "
+            >
+              <div
+                className="
+                h-full
+                w-[78%]
+                rounded-full
+                bg-gradient-to-r
+                from-yellow-400
+                to-orange-500
+              "
+              />
+            </div>
+          </div>
         </div>
       </motion.div>
 
-      {/* STATS */}
-      <div
+      {/* LEADERBOARD */}
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.2,
+        }}
         className="
         relative
         z-10
-        grid
-        grid-cols-2
-        gap-4
+        mt-8
       "
       >
-        <div
-          className="
-          rounded-3xl
-          p-5
-          bg-white/5
-          border
-          border-white/10
-        "
-        >
-          <div
-            className="
-            flex
-            items-center
-            gap-2
-            text-yellow-400
-          "
-          >
-            <Trophy size={18} />
-            G‘alabalar
-          </div>
-
-          <h2
-            className="
-            text-5xl
-            font-bold
-            mt-4
-          "
-          >
-            48
-          </h2>
-        </div>
-
-        <div
-          className="
-          rounded-3xl
-          p-5
-          bg-white/5
-          border
-          border-white/10
-        "
-        >
-          <div
-            className="
-            flex
-            items-center
-            gap-2
-            text-orange-400
-          "
-          >
-            <Flame size={18} />
-            Win streak
-          </div>
-
-          <h2
-            className="
-            text-5xl
-            font-bold
-            mt-4
-          "
-          >
-            9
-          </h2>
-        </div>
-      </div>
-
-      {/* ONLINE PLAYERS */}
-      <div
-        className="
-        relative
-        z-10
-        rounded-3xl
-        p-6
-        bg-gradient-to-br
-        from-[#132238]
-        to-[#09111d]
-        border
-        border-blue-500/20
-      "
-      >
+        {/* TITLE */}
         <div
           className="
           flex
           items-center
           justify-between
-        "
-        >
-          <div>
-            <p className="text-blue-300">
-              Online
-            </p>
-
-            <h2
-              className="
-              text-3xl
-              font-bold
-              mt-2
-            "
-            >
-              1243 o‘yinchi
-            </h2>
-          </div>
-
-          <div
-            className="
-            w-16
-            h-16
-            rounded-3xl
-            bg-blue-500/20
-            flex
-            items-center
-            justify-center
-          "
-          >
-            <Users
-              className="
-              text-blue-400
-            "
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* TOP PLAYERS */}
-      <div
-        className="
-        relative
-        z-10
-      "
-      >
-        <div
-          className="
-          flex
-          items-center
-          justify-between
-          mb-4
         "
         >
           <h2
             className="
             text-2xl
-            font-bold
+            font-black
           "
           >
-            Arena top
+            Leaderboard
           </h2>
 
-          <button className="text-red-400">
-            Barchasi
+          <button
+            className="
+            text-sm
+            text-yellow-300
+          "
+          >
+            Full ranking
           </button>
         </div>
 
-        <div className="space-y-4">
-          {[1, 2, 3].map(
-            (item) => (
+        {/* LIST */}
+        <div
+          className="
+          mt-4
+          space-y-4
+        "
+        >
+          {leaderboard.map(
+            (
+              player,
+              index
+            ) => (
               <motion.div
-                key={item}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
+                key={index}
+                whileTap={{
+                  scale: 0.98,
                 }}
                 className="
-                rounded-3xl
-                p-5
-                bg-white/5
+                rounded-[28px]
                 border
                 border-white/10
-                backdrop-blur-xl
+                bg-white/[0.03]
+                p-5
               "
               >
                 <div
@@ -371,6 +439,7 @@ export default function ArenaPage() {
                   justify-between
                 "
                 >
+                  {/* LEFT */}
                   <div
                     className="
                     flex
@@ -378,82 +447,68 @@ export default function ArenaPage() {
                     gap-4
                   "
                   >
+                    {/* RANK */}
                     <div
                       className="
                       w-14
                       h-14
                       rounded-2xl
                       bg-gradient-to-br
-                      from-red-500/30
-                      to-red-700/20
+                      from-yellow-400
+                      to-orange-500
                       flex
                       items-center
                       justify-center
-                      font-bold
+                      text-black
                       text-xl
+                      font-black
                     "
                     >
-                      {item}
+                      {
+                        player.rank
+                      }
                     </div>
 
+                    {/* INFO */}
                     <div>
                       <h3
                         className="
-                        text-xl
-                        font-bold
+                        text-lg
+                        font-semibold
                       "
                       >
-                        Player {item}
+                        {
+                          player.name
+                        }
                       </h3>
 
-                      <p className="text-gray-400">
-                        120+ g‘alaba
+                      <p
+                        className="
+                        mt-1
+                        text-sm
+                        text-gray-400
+                      "
+                      >
+                        {
+                          player.xp
+                        }{" "}
+                        XP
                       </p>
                     </div>
                   </div>
 
-                  <div className="text-right">
-                    <p className="text-gray-400">
-                      Reyting
-                    </p>
-
-                    <h2
-                      className="
-                      text-2xl
-                      font-bold
-                      text-red-400
-                    "
-                    >
-                      2480
-                    </h2>
-                  </div>
+                  {/* RIGHT */}
+                  <ChevronRight
+                    className="
+                    text-gray-500
+                  "
+                  />
                 </div>
               </motion.div>
             )
           )}
         </div>
-      </div>
-
-      {/* BUTTON */}
-      <div className="relative z-10 pb-24">
-        <button
-          className="
-          w-full
-          py-5
-          rounded-3xl
-          bg-gradient-to-r
-          from-red-500
-          to-red-700
-          text-white
-          text-lg
-          font-bold
-          shadow-2xl
-          shadow-red-500/30
-        "
-        >
-          Arena jangini boshlash
-        </button>
-      </div>
+      </motion.div>
     </div>
   );
 }
